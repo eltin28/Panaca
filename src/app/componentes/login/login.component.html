@@ -1,1 +1,41 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="login-box">
+      <h2 class="login-title">LOGIN</h2>
+        <button class="close-btn" (click)="closeDialog()">✖</button>
+      <div class="login-icon">
+        <span class="user-icon"></span>
+      </div>
+      
+      <!-- Formulario usando Reactive Forms -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">CORREO ELECTRÓNICO</label>
+          <input type="email" id="email" formControlName="email" placeholder="Ingrese su correo electrónico" class="input-field" />
+          <!-- Validación de email -->
+          <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+            Email inválido
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="password">CONTRASEÑA</label>
+          <input type="password" id="password" formControlName="password" placeholder="Ingrese su contraseña" class="input-field" />
+          <!-- Validación de contraseña -->
+          <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+            La contraseña es requerida
+          </div>
+        </div>
+  
+        <div class="forgot-password">
+          <a href="#">Olvidé mi contraseña</a>
+        </div>
+  
+        <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">ACCEDER</button>
+      </form>
+  
+      <p class="register-link">
+        ¿Aún no tienes cuenta? <a href="#">Regístrate</a>
+      </p>
+    </div>
+  </div>
+  

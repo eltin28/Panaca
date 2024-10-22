@@ -1,16 +1,13 @@
-<div class="search-bar">
-  <select>
-    <option value="">Fechas</option>
-    <option value="hoy">Hoy</option>
-    <option value="mañana">Mañana</option>
-  </select>
-  <input type="text" placeholder="Buscar eventos">
-  <button>🔍</button>
-  <nav class="navbar">
-    <ul>
-      <li><a href="#">Todos los eventos</a></li>
-      <li><a href="#">Contáctanos</a></li>
-      <li><a href="#">Acerca de nosotros</a></li>
-    </ul>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a routerLink="" class="nav-link px-2 link-secondary">Todos los eventos</a></li>
+        <li><a routerLink="" class="nav-link px-2">Contactanos</a></li>
+        <li><a routerLink="" class="nav-link px-2">Acerca de nosotros</a></li>
+      </ul>
+    </div>
   </nav>
-</div>

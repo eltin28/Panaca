@@ -1,23 +1,15 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrl: './header.component.css' 
 })
 export class HeaderComponent {
 
-  constructor(private dialog: MatDialog) {}
+  title = 'Broletos';
 
-  openLoginDialog(): void {
-    this.dialog.open(LoginComponent, {
-      width: '450px',
-      panelClass: 'custom-dialog-container',
-      disableClose: true  
-    });
-  }
 }

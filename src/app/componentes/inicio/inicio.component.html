@@ -1,47 +1,13 @@
-<div class="min-h-screen bg-white">
-  <header class="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="flex items-center space-x-2">
-      <span class="text-2xl font-bold text-navy-600">Broletos</span>
-    </div>
-    <div class="space-x-2">
-      <button class="btn btn-outline">INICIAR SESIÓN</button>
-      <button class="btn btn-primary">REGISTRARSE</button>
-    </div>
-  </header>
-
-  <nav class="bg-sky-100 py-4">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <select [(ngModel)]="selectedDate" class="select-box">
-          <option value="" disabled selected>Fechas</option>
-          <option value="today">Hoy</option>
-          <option value="tomorrow">Mañana</option>
-          <option value="this-week">Esta semana</option>
-        </select>
-        <button class="btn btn-secondary">
-          <i class="icon-search"></i>
-        </button>
-      </div>
-      <div class="space-x-4">
-        <button class="btn btn-link">TODOS LOS EVENTOS</button>
-        <button class="btn btn-link">CONTACTANOS</button>
-        <button class="btn btn-link">ACERCA DE NOSOTROS</button>
-      </div>
-    </div>
-  </nav>
-
-  <main class="container mx-auto px-4 py-8">
-    <h2 class="text-4xl font-bold mb-8">¡HAY EVENTOS PARA TI!</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-sky-100 p-4 rounded-lg">
-        <p>Hola</p>
-      </div>
-      <div class="bg-sky-100 p-4 rounded-lg">
-        <p>Que mas</p>
-      </div>
-      <div class="bg-sky-100 p-4 rounded-lg">
-        <p>Bien</p>
-      </div>
-    </div>
-  </main>
+<app-header></app-header>
+<app-search-bar></app-search-bar>
+<app-carousel></app-carousel>
+<div class="card" style="width: 18rem;">
+  <img src="concierto.jpg" class="card-img-top" alt="Concierto de rock">
+  <div class="card-body">
+    <h5 class="card-title">Evento</h5>
+    <p class="card-text">Twenty One Pilots event</p>
+    <a href="#" class="btn btn-primary">Comprar</a>
+  </div>
 </div>
+
+<app-footer></app-footer>

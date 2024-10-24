@@ -1,13 +1,18 @@
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a routerLink="" class="nav-link px-2 link-secondary">Todos los eventos</a></li>
-        <li><a routerLink="" class="nav-link px-2">Contactanos</a></li>
-        <li><a routerLink="" class="nav-link px-2">Acerca de nosotros</a></li>
-      </ul>
+<div class="search-bar">
+  <nav class="navbar">
+    <div class="primera">
+      <div class="search-container">
+        <input type="text" placeholder="Buscar eventos" class="search-input">
+        <button class="search-button">🔍</button>
+      </div>      
     </div>
+    <div class="primera">
+      <ul class="nav-list">
+        <li class="nav-item"><a class="texto" routerLink="/">Inicio</a></li>
+        <li class="nav-item"><a class="texto" routerLink="eventos">Eventos</a></li>
+        <li class="nav-item"><a class="texto" routerLink="#">Contáctanos</a></li>
+        <li class="nav-item"><a class="texto" routerLink="#">Acerca de nosotros</a></li>
+      </ul>
+    </div>    
   </nav>
+</div>

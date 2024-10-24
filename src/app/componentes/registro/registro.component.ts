@@ -32,7 +32,7 @@ export class RegistroComponent{
       confirmarPassword: ['', [Validators.required]]
     },
     {
-      validators: [this.passwordsMatchValidator, this.emailMatchValidator]
+      validators: [this.emailMatchCustomValidator, this.passwordsMatchValidator]
     } as AbstractControlOptions
   );
   }
@@ -42,11 +42,11 @@ export class RegistroComponent{
   console.log(this.registroForm.value);
 }
 
-emailMatchValidator(formGroup: FormGroup){
+emailMatchCustomValidator(formGroup: FormGroup){
   const email = formGroup.get('email')?.value;
   const confirmarEmail = formGroup.get('confirmarEmail')?.value
 
-  return email == confirmarEmail ? null : { emailMatchValidator: true};
+  return email == confirmarEmail ? null : { emailMatchCustomValidator: true};
 }
 
 passwordsMatchValidator(formGroup: FormGroup) {

@@ -1,5 +1,5 @@
-<body style="background-color: #B9E8CA; margin: 0; height: 100%;">
-  <div class="container mt-5">
+<div style="background-color: #B9E8CA;">
+  <div class="container pt-5 pb-5">
     <div class="border rounded p-3 shadow" style="background-color: #2B263D; max-width: 600px; margin: auto;">
       <h2 class="text-center mb-3" style="color: #ffffff;">Registro</h2>
       <i class="fa-solid fa-user mb-3 d-flex justify-content-center align-items-center" style="font-size: 48px; color: #ffffff;"></i>
@@ -38,7 +38,7 @@
             <input type="email" class="form-control" formControlName="confirmarEmail" placeholder="Confirmar Email" aria-label="Confirmar Email" style="border: 1px solid #ffffff;">
           </div>
         </div>
-        <div class="row mb-3"> <!-- Cambiar mb-3 a mb-2 -->
+        <div class="row mb-3">
           <div class="col">
             <label for="password" class="form-label" style="color: #ffffff;">Contraseña:</label>
             <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" aria-label="Contraseña" style="border: 1px solid #ffffff;">
@@ -50,8 +50,16 @@
         </div>
         <div class="row mb-2">
           <div class="col">
-            <p class="text-danger" *ngIf="registroForm.hasError('passwordsMismatch')">Las contraseñas no coinciden</p>
-            <p class="text-danger" *ngIf="registroForm.hasError('emailMismatch')">Los correos no coinciden</p>          
+            @if(registroForm.hasError('passwordsMismatch')){
+              <div class="alert alert-danger" role="alert">
+                Las contraseñas no coinciden
+              </div>
+            }
+            @if(registroForm.hasError('emailMatchCustomValidator')){
+              <div class="alert alert-danger" role="alert">
+                Los correos no coinciden
+              </div>
+            }         
           </div>
         </div>
         <div class="row">
@@ -71,4 +79,4 @@
       </form>
     </div>
   </div>
-</body>
+</div>

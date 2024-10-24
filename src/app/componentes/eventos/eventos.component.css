@@ -1,0 +1,30 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten a nuevas líneas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    justify-content: space-between; /* Distribuye uniformemente las tarjetas */
+  }
+  
+  .card {
+    flex: 1 1 calc(33.333% - 20px); /* Cada tarjeta ocupa un tercio del contenedor */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      flex: 1 1 calc(50% - 20px); /* En pantallas medianas, muestra 2 cartas por fila */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      flex: 1 1 100%; /* En pantallas pequeñas, muestra 1 carta por fila */
+    }
+  }
+  

@@ -47,7 +47,7 @@
 }
 
 .home-background {
-    /* background-image: url('../../../assets/Fondo2.jpeg'); */
+    background-image: url('../../../assets/images/Fondo.jpg');
     background-size: cover;
     background-position: center;
     position: absolute;

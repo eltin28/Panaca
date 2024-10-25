@@ -1,27 +1,72 @@
-<div class="card-container">
-    <div class="card">
-      <h3>Título 1</h3>
-      <p>Descripción de la tarjeta 1.</p>
-    </div>
-    <div class="card">
-      <h3>Título 2</h3>
-      <p>Descripción de la tarjeta 2.</p>
-    </div>
-    <div class="card">
-      <h3>Título 3</h3>
-      <p>Descripción de la tarjeta 3.</p>
-    </div>
-    <div class="card">
-      <h3>Título 4</h3>
-      <p>Descripción de la tarjeta 4.</p>
-    </div>
-    <div class="card">
-      <h3>Título 5</h3>
-      <p>Descripción de la tarjeta 5.</p>
-    </div>
-    <div class="card">
-      <h3>Título 6</h3>
-      <p>Descripción de la tarjeta 6.</p>
+<div class="events-header">
+  <h2 class="title">TODOS LOS EVENTOS</h2>
+  <div class="filters">
+    <label class="filter-title">Filtrar eventos</label>
+    <div class="filter-group">
+      <select class="filter-dropdown">
+        <option>Tipo de evento</option>
+        <option>Concierto</option>
+        <option>Teatro</option>
+        <option>Deporte</option>
+      </select>
+      <select class="filter-dropdown">
+        <option>Fecha</option>
+        <option>Hoy</option>
+        <option>Esta semana</option>
+        <option>Este mes</option>
+      </select>
+      <select class="filter-dropdown">
+        <option>Ordenar por</option>
+        <option>Nombre</option>
+        <option>Popularidad</option>
+        <option>Fecha</option>
+      </select>
     </div>
   </div>
-  
+</div>
+<div class="card-container">
+  <div class="event-card" routerLink="/evento">
+    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
+    <div class="event-content">
+      <h3 class="event-title">Título del Evento</h3>
+      <div class="event-info">
+        <span class="event-type">Tipo de Evento</span>
+        <span class="event-location">Lugar del Evento</span>
+      </div>
+      <div class="event-date">Fecha del Evento</div>
+    </div>
+  </div>
+  <div class="event-card">
+    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
+    <div class="event-content">
+      <h3 class="event-title">Título del Evento</h3>
+      <div class="event-info">
+        <span class="event-type">Tipo de Evento</span>
+        <span class="event-location">Lugar del Evento</span>
+      </div>
+      <div class="event-date">Fecha del Evento</div>
+    </div>
+  </div>
+  <div class="event-card">
+    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
+    <div class="event-content">
+      <h3 class="event-title">Título del Evento</h3>
+      <div class="event-info">
+        <span class="event-type">Tipo de Evento</span>
+        <span class="event-location">Lugar del Evento</span>
+      </div>
+      <div class="event-date">Fecha del Evento</div>
+    </div>
+  </div>
+  <div class="event-card">
+    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
+    <div class="event-content">
+      <h3 class="event-title">Título del Evento</h3>
+      <div class="event-info">
+        <span class="event-type">Tipo de Evento</span>
+        <span class="event-location">Lugar del Evento</span>
+      </div>
+      <div class="event-date">Fecha del Evento</div>
+    </div>
+  </div>
+</div>  

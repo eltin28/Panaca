@@ -1,5 +1,5 @@
 <div class="container" id="container">
-    <div class="form-container sign-up-container">
+    <div class="form-container sign-up-container" style=" background-color: white">
         <div style="margin: 0 auto; width: 80%;">
             <h1 style="font-weight: bold; margin-bottom: 20px; margin-top: 12px">Crea tu cuenta</h1>
         </div>
@@ -48,7 +48,9 @@
     </div>
     <div class="form-container sign-in-container">
         <form class="formRegistro" #f="ngForm">
-            <h1 style="font-weight: bold; margin: 0;">Ingresa</h1>
+            <div style="margin: 0 auto; width: 80%;">
+                <h1 style="font-weight: bold; margin-bottom: 20px; margin-top: 12px">Ingresa</h1>
+            </div>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
                 <input class="Input-registro" type="email" placeholder="Email" />
@@ -79,7 +81,6 @@
                     Da click en el botón "REGISTRATE" y comienza tu viaje con nosotros.
                 </p>
                 <button class="buttonRegistro ghost" id="signUp" >Registrate</button>
-                <!-- <app-alerta [alerta]="alerta"></app-alerta> -->
             </div>
         </div>
     </div>

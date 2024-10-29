@@ -42,18 +42,70 @@
     border: 1px solid #ccc;
     border-radius: 10px; /* Inner radius */
     background-color: #fff; /* Fondo blanco para la sección de detalles */
-  }
-  
-  .purchase-panel {
-    flex: 1;
-    padding: 20px;
-    background-color: #007bff; /* Color de fondo para el panel de compra */
-    color: white; /* Color del texto */
-    border-radius: 10px; /* Inner radius del panel de compra */
     margin-left: 20px; /* Espacio entre los paneles */
+
   }
 
   .details-image {
     width: calc(100% - 20px); /* Ocupa un tercio del contenedor */
     align-content: center;
   }
+
+  /* LOCALIDADES Y CANTIDAD */
+
+  .combobox-group h3 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .dropdown-container {
+    margin-bottom: 20px;
+  }
+  
+  .custom-combobox {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    background-color: #ffffff;
+    background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%);
+    background-position: calc(100% - 15px) calc(1em + 3px), calc(100% - 10px) calc(1em + 3px);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+  
+  .custom-combobox option {
+    padding: 8px;
+    font-size: 1em;
+  }
+  
+  .custom-combobox option:not(:first-child) {
+    border-top: 1px solid #e0e0e0; /* Línea gris clara */
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .action-button {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+  }
+  
+  .action-button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -3,67 +3,59 @@
         <div style="margin: 0 auto; width: 80%;">
             <h1 style="font-weight: bold; margin-bottom: 20px; margin-top: 12px">Crea tu cuenta</h1>
         </div>
-        <form class="formRegistro" #f="ngForm">
+        <form class="formRegistro" [formGroup]="registroForm" (ngSubmit)="registrar()" novalidate="">
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
-                <input class="Input-registro" type="text" name="nombre" placeholder="Nombre completo" required/>
-                <!-- [(ngModel)]="registroClienteDTO.nombre" -->
+                <input class="Input-registro" type="text" placeholder="Cedula" formControlName="cedula"/>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
-                <input class="Input-registro" type="text" name="nickname" maxlength="15" placeholder="Cedula" required/>
-                <!-- [(ngModel)]="registroClienteDTO.nickname" -->
+                <input class="Input-registro" type="text" placeholder="Nombre Completo" formControlName="nombre"/>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
-                <input class="Input-registro" type="text" name="nickname" maxlength="15" placeholder="Direccion" required/>
-                <!-- [(ngModel)]="registroClienteDTO.nickname" -->
+                <input class="Input-registro" type="text" placeholder="Direccion" formControlName="direccion"/>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
-                <input class="Input-registro" type="text" name="nickname" maxlength="15" placeholder="Telefono" required/>
-                <!-- [(ngModel)]="registroClienteDTO.nickname" -->
+                <input class="Input-registro" type="number" placeholder="Telefono" formControlName="telefono"/>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-envelope"></i>
-                <input class="Input-registro" type="email" name="Email"  placeholder="Email" required/>
-                <!-- [(ngModel)]="registroClienteDTO.email" -->
+                <input class="Input-registro" type="email" name="Email" placeholder="Email" formControlName="email"/>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-lock"></i>
-                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" name="Password" minlength="5" placeholder="Contraseña" required/>
-                <!--  [(ngModel)]="registroClienteDTO.password" -->
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" formControlName="password"/>
                 <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-lock"></i>
-                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" name="confirmaPassword" minlength="5" required placeholder="Repetir contraseña" />
-                <!--  [(ngModel)]="registroClienteDTO.confirmaPassword" -->
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Repetir contraseña" formControlName="confirmaPassword"/>
                 <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
             </div>
-            <!-- @if (!sonIguales()) { <p>Las contraseñas no coinciden</p> } -->
-            <button class="buttonRegistro" type="submit" (click)="registrar()">Registrarse</button>
-            <!-- [disabled]="f.invalid || !sonIguales()" -->
+            @if (registroForm.hasError('passwordsMismatch')) {
+                <p>Las contraseñas no coinciden</p>
+            }
+            <button class="buttonRegistro" type="submit" [disabled]="registroForm.invalid">Registrarse</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form class="formRegistro" #f="ngForm">
+        <form class="formRegistro" [formGroup]="loginForm" (ngSubmit)="login()" novalidate="">
             <div style="margin: 0 auto; width: 80%;">
                 <h1 style="font-weight: bold; margin-bottom: 20px; margin-top: 12px">Ingresa</h1>
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-user"></i>
-                <input class="Input-registro" type="email" placeholder="Email" />
-                <!--[(ngModel)]="loginDTO.email" [ngModelOptions]="{standalone: true}"  -->
+                <input class="Input-registro" type="email" placeholder="Email" formControlName="email" />
             </div>
             <div class="input-container">
                 <i class="fa-solid fa-lock"></i>
-                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" />
-                <!-- [(ngModel)]="loginDTO.password" [ngModelOptions]="{standalone: true}" -->
+                <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" formControlName="password" />
                 <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
             </div>
             <a href="#" style="color: #333; font-size: 14px; text-decoration: none; margin: 15px 0;">Olvidaste tu contraseña?</a>
-            <button class="buttonRegistro" (click)="login()">Ingresa</button>
+            <button class="buttonRegistro" type="submit" [disabled]="loginForm.invalid">Ingresa</button>
         </form>
     </div>
     <div class="overlay-container">

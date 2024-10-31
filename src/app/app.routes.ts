@@ -8,6 +8,7 @@ import { HeaderComponent } from './componentes/header/header.component';
 import { EventosComponent } from './componentes/eventos/eventos.component';
 import { EventoUnidadComponent } from './componentes/evento-unidad/evento-unidad.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { DashboardAdminComponent } from './componentes/dashboard-admin/dashboard-admin.component';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
    { path: 'eventos', component: EventosComponent },
    { path: 'evento', component: EventoUnidadComponent },
    { path: 'carrito', component: CarritoComponent },
+   { path: 'dashboard-admin', component: DashboardAdminComponent },
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

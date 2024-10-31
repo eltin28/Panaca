@@ -1,10 +1,15 @@
-<header>
-    <app-navbar></app-navbar>
-    <app-search-bar></app-search-bar>
-</header>
+@if (rol != "ADMIN") {
+    <header>
+        <app-navbar></app-navbar>
+        <app-search-bar></app-search-bar>   
+    </header>
+
+}
 <div>
     <router-outlet></router-outlet>
 </div>
+@if (rol != "ADMIN"){
 <footer>
     <app-footer></app-footer>
 </footer>
+}

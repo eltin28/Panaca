@@ -54,7 +54,7 @@
                 <input class="Input-registro" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña" formControlName="password" />
                 <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
             </div>
-            <a href="#" style="color: #333; font-size: 14px; text-decoration: none; margin: 15px 0;">Olvidaste tu contraseña?</a>
+            <a href="/cambio-contrasena" style="color: #333; font-size: 14px; text-decoration: none; margin: 15px 0;">Olvidaste tu contraseña?</a>
             <button class="buttonRegistro" type="submit" [disabled]="loginForm.invalid">Ingresa</button>
         </form>
     </div>

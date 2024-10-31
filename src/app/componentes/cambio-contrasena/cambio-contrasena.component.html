@@ -1,0 +1,44 @@
+<!-- forgot-password.component.html -->
+<div class="forgot-password-container">
+    <!-- Input del correo electrónico -->
+     @if (step === 1) {
+        <div class="step-container">
+        <h2>Recuperar Contraseña</h2>
+        <input
+            type="email"
+            placeholder="Ingresa tu correo electrónico"
+        />
+        <button (click)="nextStep()">Enviar Código</button>
+        </div>
+    }
+  
+    <!-- Input del código de verificación -->
+    @if (step === 2) {
+    <div class="step-container">
+      <h2>Verificar Código</h2>
+      <input type="text" placeholder="Ingresa el código" />
+      <button (click)="nextStep()">Verificar</button>
+      <button (click)="previousStep()">Atrás</button>
+    </div>
+    }
+
+    <!-- Inputs de la nueva contraseña -->
+    @if (step === 3) {
+    <div class="step-container">
+      <h2>Nueva Contraseña</h2>
+      <input
+        type="password"
+        placeholder="Nueva contraseña"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Confirma nueva contraseña"
+        required
+      />
+      <button (click)="submitNewPassword()">Confirmar</button>
+      <button (click)="previousStep()">Atrás</button>
+    </div>
+    }
+</div>
+  

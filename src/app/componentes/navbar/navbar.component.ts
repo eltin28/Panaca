@@ -21,6 +21,10 @@ export class NavbarComponent {
   isLogged = false;
   mostrarMenu = false;
 
+  constructor(){
+    //this.rol = this.tokenService.getRol();
+  }
+
   toggleMenu() {
     this.mostrarMenu = this.mostrarMenu === false?true:false;
   }

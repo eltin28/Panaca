@@ -2,11 +2,13 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
-// import { PublicoService } from '../../servicios/publico.service';
-// import { AuthService } from '../../servicios/auth.service';
+import { AuthService } from '../../servicios/auth.service';
+import Swal from 'sweetalert2';
 // import { AlertaComponent } from '../alerta/alerta.component';
 // import { Alerta } from '../../dto/alerta';
-// import { TokenService } from '../../servicios/token.service';
+import { TokenService } from '../../servicios/token.service';
+import { CrearCuentaDTO } from '../../dto/cuenta/crear-cuenta-dto';
+import { LoginDTO } from '../../dto/cuenta/login-dto';
 
 @Component({
   selector: 'app-inicio',
@@ -28,9 +30,7 @@ export class RegistroLoginComponent implements OnInit {
 
 
   constructor(@Inject(DOCUMENT, ) private document: Document, private formBuilder: FormBuilder,
-  // private publicoService: PublicoService, 
-    // private authService: AuthService, 
-    // private tokenService: TokenService
+    private authService: AuthService, private tokenService: TokenService
   ) {
 
     this.crearFormulario();
@@ -64,11 +64,43 @@ export class RegistroLoginComponent implements OnInit {
    
 
   public registrar() {
-    console.log(this.registroForm.value);
+    const crearCuenta = this.registroForm.value as CrearCuentaDTO;
+    this.authService.crearCuenta(crearCuenta).subscribe({
+      next: (data) => {
+        Swal.fire({
+          title: 'Cuenta creada',
+          text: 'La cuenta se ha creado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        })
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: error.error.respuesta,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        })
+      }
+    });   
   }
 
   public login() {
-    console.log(this.loginForm.value);
+    const loginDTO = this.loginForm.value as LoginDTO;
+
+
+    this.authService.iniciarSesion(loginDTO).subscribe({
+      next: (data) => {
+        this.tokenService.login(data.respuesta.token);
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: error.error.respuesta
+        });
+      },
+    });
   }
 
   passwordsMatchValidator(formGroup: FormGroup) {

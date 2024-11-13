@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-// import { TokenService } from '../../servicios/token.service';
+import { TokenService } from '../../servicios/token.service';
 
 
 @Component({
@@ -16,31 +16,35 @@ import { RouterModule } from '@angular/router';
 
 export class NavbarComponent {
 
-  nombre = ''; 
+  nombre: any; 
   title = 'Broletos';
-  isLogged = false;
-  mostrarMenu = false;
+  logueado: boolean;
+  mostrarMenu: boolean;
+  bandera = false;
 
-  constructor(){
-    //this.rol = this.tokenService.getRol();
+  constructor(private tokenService: TokenService){
+    this.logueado = this.isLogged();
+    this.mostrarMenu = this.toggleMenu();
+    this.nombre = this.nombreUser();
   }
 
-  toggleMenu() {
-    this.mostrarMenu = this.mostrarMenu === false?true:false;
+  toggleMenu():  boolean{
+    return this.bandera === false?true:false;
   }
 
-  // constructor(private authService: AuthService, private tokenService: TokenService) {}
+  public isLogged(): boolean{
+    return this.tokenService.isLogged();
+  }
 
-  // ngOnInit(): void {
-  //   this.isLogged = this.tokenService.isLogged();
-  //   if (this.isLogged) {
-  //       this.nombre = this.tokenService.getAllTokenData().nombre;
-  //   }
-  // }
+  public nombreUser(): void {
+    if (this.logueado) {
+        this.nombre = this.tokenService.getAllTokenData().nombre;
+    }
+  }
 
-  // public logout() {
-  //   this.tokenService.logout();
-  // }
+  public logout() {
+    this.tokenService.logout();
+  }
 
   // public editarPerfil(){
   //   this.tokenService.editarPerfil();

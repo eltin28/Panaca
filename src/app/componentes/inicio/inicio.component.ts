@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CarouselComponent } from "../carousel/carousel.component";
+import { PublicoService } from '../../servicios/publico.service';
+import { ItemEventoDTO } from '../../dto/evento/item-evento-dto';
+import { TokenService } from '../../servicios/token.service';
+
 
 @Component({
   selector: 'app-inicio',
@@ -10,11 +14,30 @@ import { CarouselComponent } from "../carousel/carousel.component";
   styleUrl: './inicio.component.css'
 })
 export class InicioComponent {
-  selectedDate: string = '';
 
-  constructor() {}
+  eventos: ItemEventoDTO[];
+  logueado: boolean;
 
-  onDateChange(event: any) {
-    this.selectedDate = event.target.value;
+
+  constructor(private publicoService: PublicoService, private tokenService: TokenService) {
+    this.eventos = [];
+    this.logueado = this.isLogged();
+    this.obtenerEventos();
   }
+
+  public obtenerEventos(){
+    this.publicoService.listarEventos().subscribe({
+      next: (data) => {
+        this.eventos = data.respuesta;
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+   }
+
+  public isLogged(): boolean{
+    return this.tokenService.isLogged();
+  }
+
 }

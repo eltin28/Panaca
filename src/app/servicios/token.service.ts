@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Buffer } from "buffer";  
-
+import { InformacionCuentaDTO } from '../dto/cuenta/informacion-cuenta-dto';
 
 const TOKEN_KEY = "AuthToken";
 
@@ -47,16 +47,6 @@ export class TokenService {
   }
 
 // Leer datos del usuario
-
-public getIDCuenta(): string {
-  const token = this.getToken();
-  if (token) {
-    const values = this.decodePayload(token);
-    return values.id;
-  }
-  return "";
- }
- 
  
  public getRol(): string {
   const token = this.getToken();
@@ -67,4 +57,20 @@ public getIDCuenta(): string {
   return "";
  }
  
+   //Con la funcion getAllTokenData simplifico la creacion de funciones para obtener datos separados
+   public getAllTokenData(): InformacionCuentaDTO {
+    const token = this.getToken(); // Asume que getToken devuelve el token JWT
+    if (token) {
+      const decodedValues = this.decodePayload(token); // Usa decodePayload para obtener el payload decodificado
+      return {
+        id: decodedValues.id,
+        cedula: decodedValues.cedula,
+        nombre: decodedValues.nombre,
+        telefono: decodedValues.telefono,
+        direccion: decodedValues.direccion,
+        email: decodedValues.email
+      };
+    }
+    return { id: '', cedula: '', nombre: '', telefono: '', direccion: '', email: '' };
+  }
 }

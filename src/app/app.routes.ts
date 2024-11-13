@@ -11,6 +11,8 @@ import { NavbarAdminComponent } from './componentes/navbar-admin/navbar-admin.co
 import { CambioContrasenaComponent } from './componentes/cambio-contrasena/cambio-contrasena.component'
 import { HomeAdminComponent } from './componentes/home-admin/home-admin.component';
 import { EventosAdminComponent } from './componentes/eventos-admin/eventos-admin.component';
+import { CrearCuponComponent } from './componentes/crear-cupon/crear-cupon.component';
+import { CuponesAdminComponent } from './componentes/cupones-admin/cupones-admin.component';
 
 
 export const routes: Routes = [
@@ -23,6 +25,8 @@ export const routes: Routes = [
    { path: 'navbar-admin', component: NavbarAdminComponent },
    { path: 'home-admin', component: HomeAdminComponent },
    { path: 'eventos-admin', component: EventosAdminComponent },
+   { path: 'crear-cupon', component: CrearCuponComponent },
+   { path: 'cupones-admin', component: CuponesAdminComponent },
    { path: 'cambio-contrasena', component: CambioContrasenaComponent },
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];

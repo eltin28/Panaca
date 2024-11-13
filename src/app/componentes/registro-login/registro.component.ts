@@ -3,7 +3,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from '../../servicios/auth.service';
-import Swal from 'sweetalert2';
+import  Swal  from 'sweetalert2';
 // import { AlertaComponent } from '../alerta/alerta.component';
 // import { Alerta } from '../../dto/alerta';
 import { TokenService } from '../../servicios/token.service';

@@ -12,7 +12,7 @@ import { CambiarPasswordDTO } from '../dto/cuenta/cambiar-password-dto';
 })
 export class AuthService {
 
-  private authURL = "http://localhost:8080/api/publico";
+  private authURL = "http://localhost:8081/api/publico";
 
 
   constructor(private http: HttpClient) { }

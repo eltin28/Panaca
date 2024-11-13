@@ -2,8 +2,8 @@
 <div class="crear-evento">
     <div class="container pt-5 pb-5">
         <div class="border rounded p-3 shadow" style="background-color: #171123; max-width: 950px; margin: auto;">
-            <h2 class="text-center mb-3" style="color: white;">Crear evento</h2>
-            <i class="fa-solid fa-user mb-3 d-flex justify-content-center align-items-center" style="font-size: 48px; color: #ffffff;"></i>
+            <h2 class="text-center mb-3" style="color: white;">Crear un evento</h2>
+            <i class="fa-solid fa-circle-plus mb-3 d-flex justify-content-center align-items-center" style="font-size: 48px; color: #ffffff;"></i>
             <form [formGroup]="crearEventoForm" (ngSubmit)="crearEvento()" novalidate="">
 
                 <hr class="mb-2" style="border: 1px solid #ffffff; width: 80%; margin: auto;">
@@ -48,12 +48,13 @@
                   <div class="col" style="margin-bottom: 15px;">
                     <label for="imagenPortada" class="form-label" style="color: #ffffff;">Imagen Portada:</label>
                     <input type="file" id="imagenPortada" (change)="onFileChange($event, 'portada')" style="display: none;" />
-                    <label for="imagenPortada" class="custom-file-label">Seleccionar imagen de portada</label>
+                    
+                    <label for="imagenPortada" class="custom-file-label"><i class="fa-solid fa-images"></i> Seleccionar imagen de portada</label>
                   </div>
                   <div class="col" style="margin-bottom: 10px;">
                     <label for="imagenLocalidades" class="form-label" style="color: #ffffff;">Imagen Localidades:</label>
                     <input type="file" id="imagenLocalidades" (change)="onFileChange($event, 'localidades')" style="display: none;" />
-                    <label for="imagenLocalidades" class="custom-file-label">Seleccionar imagen de localidades</label>
+                    <label for="imagenLocalidades" class="custom-file-label"><i class="fa-solid fa-images"></i> Seleccionar imagen de localidades</label>
                   </div>
                 </div> 
 

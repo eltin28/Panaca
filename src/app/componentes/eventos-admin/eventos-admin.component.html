@@ -1,0 +1,50 @@
+<app-navbar-admin></app-navbar-admin>
+<div class="event-list-container">
+    <div class="section-title" style="color: black">
+        <h2>Eventos Disponibles</h2>
+    </div>
+    <div class="card-container">
+        <div class="event-card" *ngFor="let event of availableEvents | paginate: { itemsPerPage: 5, currentPage: availablePage }" routerLink="/evento/{{event.id}}">
+            <img [src]="event.image" alt="Imagen del evento" class="event-image">
+            <div class="event-content">
+                <h3 class="event-title">{{ event.title }}</h3>
+                <div class="event-info">
+                    <span class="event-type">{{ event.type }}</span>
+                    <span class="event-location">{{ event.location }}</span>
+                </div>
+                <div class="event-date">{{ event.date }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de paginación para eventos disponibles -->
+    <div class="pagination-container">
+        <button (click)="prevAvailablePage()" [disabled]="availablePage === 1" class="pagination-button">Anterior</button>
+        <span class="pagination-text">Página {{ availablePage }}</span>
+        <button (click)="nextAvailablePage()" [disabled]="availablePage === maxAvailablePage()" class="pagination-button">Siguiente</button>
+    </div>
+
+
+    <div class="section-title" style="color: black;">
+        <h2>Eventos No Disponibles</h2>
+    </div>
+    <div class="card-container">
+        <div class="event-card" *ngFor="let event of unavailableEvents | paginate: { itemsPerPage: 5, currentPage: unavailablePage }" routerLink="/evento/{{event.id}}">
+            <img [src]="event.image" alt="Imagen del evento" class="event-image">
+            <div class="event-content">
+                <h3 class="event-title">{{ event.title }}</h3>
+                <div class="event-info">
+                    <span class="event-type">{{ event.type }}</span>
+                    <span class="event-location">{{ event.location }}</span>
+                </div>
+                <div class="event-date">{{ event.date }}</div>
+            </div>
+        </div>
+    </div>
+    <!-- Botones de paginación para eventos no disponibles -->
+    <div class="pagination-container">
+        <button (click)="prevUnavailablePage()" [disabled]="unavailablePage === 1" class="pagination-button">Anterior</button>
+        <span class="pagination-text">Página {{ unavailablePage }}</span>
+        <button (click)="nextUnavailablePage()" [disabled]="unavailablePage === maxUnavailablePage()" class="pagination-button">Siguiente</button>
+    </div>
+

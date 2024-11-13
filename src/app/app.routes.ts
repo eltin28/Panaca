@@ -7,8 +7,10 @@ import { HeaderComponent } from './componentes/header/header.component';
 import { EventosComponent } from './componentes/eventos/eventos.component';
 import { EventoUnidadComponent } from './componentes/evento-unidad/evento-unidad.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
-import { DashboardAdminComponent } from './componentes/dashboard-admin/dashboard-admin.component';
+import { NavbarAdminComponent } from './componentes/navbar-admin/navbar-admin.component';
 import { CambioContrasenaComponent } from './componentes/cambio-contrasena/cambio-contrasena.component'
+import { HomeAdminComponent } from './componentes/home-admin/home-admin.component';
+import { EventosAdminComponent } from './componentes/eventos-admin/eventos-admin.component';
 
 
 export const routes: Routes = [
@@ -18,7 +20,9 @@ export const routes: Routes = [
    { path: 'eventos', component: EventosComponent },
    { path: 'evento', component: EventoUnidadComponent },
    { path: 'carrito', component: CarritoComponent },
-   { path: 'dashboard-admin', component: DashboardAdminComponent },
+   { path: 'navbar-admin', component: NavbarAdminComponent },
+   { path: 'home-admin', component: HomeAdminComponent },
+   { path: 'eventos-admin', component: EventosAdminComponent },
    { path: 'cambio-contrasena', component: CambioContrasenaComponent },
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];

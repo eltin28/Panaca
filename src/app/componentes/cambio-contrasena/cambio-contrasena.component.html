@@ -1,43 +1,54 @@
-<!-- forgot-password.component.html -->
 <div class="forgot-password-container">
     <!-- Input del correo electrónico -->
      @if (step === 1) {
-        <div class="step-container">
-        <h2>Recuperar Contraseña</h2>
-        <input
-            type="email"
-            placeholder="Ingresa tu correo electrónico"
-        />
-        <button (click)="nextStep()">Enviar Código</button>
+        <div class="container">
+          <h3>Recuperar Contraseña</h3>
+          <div class="input-container">
+            <div class="input-group">
+              <input required="" type="email" autocomplete="off" class="inputContra">
+              <label class="user-label">Email</label>
+            </div>
+          </div>
+          <button class="buttonRegistro" (click)="nextStep()">Enviar Código</button>
         </div>
     }
-  
     <!-- Input del código de verificación -->
     @if (step === 2) {
-    <div class="step-container">
-      <h2>Verificar Código</h2>
-      <input type="text" placeholder="Ingresa el código" />
-      <button (click)="nextStep()">Verificar</button>
-      <button (click)="previousStep()">Atrás</button>
-    </div>
-    }
-
+      <div class="container">
+        <h3>Verificar Código</h3>
+        <div class="inp">
+          @for (i of code; track $index){
+          <input type="text" id="inp-verifi" maxlength="1">
+          }
+        </div>
+        <div class="containerBoton">
+          <button class="buttonRegistro" (click)="previousStep()">Atrás</button>
+          <button class="buttonRegistro" (click)="nextStep()">Verificar</button>
+        </div>
+      </div>
+      }
     <!-- Inputs de la nueva contraseña -->
     @if (step === 3) {
-    <div class="step-container">
-      <h2>Nueva Contraseña</h2>
-      <input
-        type="password"
-        placeholder="Nueva contraseña"
-        required
-      />
-      <input
-        type="password"
-        placeholder="Confirma nueva contraseña"
-        required
-      />
-      <button (click)="submitNewPassword()">Confirmar</button>
-      <button (click)="previousStep()">Atrás</button>
+    <div class="container">
+      <h3>Nueva Contraseña</h3>
+      <div class="input-container">
+        <div class="input-container2">
+          <i class="fa-solid fa-lock"></i>
+          <input class="inputContra2" [type]="showPassword? 'text' : 'password'" placeholder="Contraseña nueva" formControlName="password" />
+          <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
+        </div>
+      </div>
+      <div class="input-container">
+        <div class="input-container2">
+          <i class="fa-solid fa-lock"></i>
+          <input class="inputContra2" [type]="showPassword? 'text' : 'password'" placeholder="Confirmar contraseña" formControlName="password" />
+          <i class="fa-solid {{activeIcon}}" (click)="togglePasswordVisibility()"></i>
+        </div>
+      </div>
+      <div class="containerBoton">
+        <button class="buttonRegistro" (click)="previousStep()">Atrás</button>
+        <button class="buttonRegistro" (click)="submitNewPassword()">Confirmar</button>
+      </div>
     </div>
     }
 </div>

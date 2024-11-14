@@ -8,6 +8,7 @@ import { EventosComponent } from './componentes/eventos/eventos.component';
 import { EventoUnidadComponent } from './componentes/evento-unidad/evento-unidad.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { CambioContrasenaComponent } from './componentes/cambio-contrasena/cambio-contrasena.component'
+import { CodigoValidacionComponent } from './componentes/codigo-validacion/codigo-validacion.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
    { path: 'evento', component: EventoUnidadComponent },
    { path: 'carrito', component: CarritoComponent },
    { path: 'cambio-contrasena', component: CambioContrasenaComponent },
+   { path: 'codigo-validacion', component: CodigoValidacionComponent},
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

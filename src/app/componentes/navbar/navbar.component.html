@@ -13,7 +13,7 @@
                     <a routerLink="carrito" class="d-inline-flex link-body-emphasis text-decoration-none align-items-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> </a>
                     <!-- Si el usuario está autenticado, muestra el saludo -->
                     <li class="nav-item custom-nav-item-green" id="navbarNav">
-                      <button class="nav-link login-style" id="dropdownBtn" (click)="toggleMenu()">Hola, {{nombre}}</button>
+                      <button class="nav-link login-style" id="dropdownBtn" (click)="toggleMenu()">Hola</button>
                       <ul class="dropdown-menu" id="dropdownMenu" [ngClass]="{'show': mostrarMenu}">
                         <li>
                           <button class="nav-link salirr" (click)="logout()">Salir</button>

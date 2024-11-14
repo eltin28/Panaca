@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MensajeDTO } from '../dto/autenticacion/mensaje-dto';
 import { Observable } from 'rxjs';
+import { FiltroEventoDTO } from '../dto/evento/filtro-evento-dto';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class PublicoService {
 
 
- private publicoURL = "http://localhost:8080/api/publico";
+ private publicoURL = "http://localhost:8081/api/publico";
 
 
  constructor(private http: HttpClient) { }
@@ -18,8 +19,8 @@ export class PublicoService {
   //_______________________________ METODOS EVENTO _____________________________________________
 
 
- public listarCiudades(): Observable<MensajeDTO> {
-   return this.http.get<MensajeDTO>(`${this.publicoURL}/filtrar-eventos`);
+ public filtrarEventos(filtroEventoDTO: FiltroEventoDTO): Observable<MensajeDTO> {
+   return this.http.post<MensajeDTO>(`${this.publicoURL}/filtrar-eventos`, filtroEventoDTO);
  }
 
 

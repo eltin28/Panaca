@@ -12,11 +12,22 @@ import { CambiarPasswordDTO } from '../dto/cuenta/cambiar-password-dto';
 })
 export class AuthService {
 
-  private authURL = "http://localhost:8080/api/publico";
+  private authURL = "http://localhost:8081/api/publico";
+
+  private emailTemp: string;
+
+  constructor(private http: HttpClient) { 
+    this.emailTemp = this.getEmailTemp();
+  }
 
 
-  constructor(private http: HttpClient) { }
+  setEmailTemp(email: string) {
+    this.emailTemp = email;
+  }
 
+  getEmailTemp() {
+    return this.emailTemp;
+  }
   //_______________________________ METODOS CUENTA _____________________________________________
 
    public crearCuenta(cuentaDTO: CrearCuentaDTO): Observable<MensajeDTO> {

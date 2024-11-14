@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-cambio-contrasena',
   standalone: true,
-  imports: [ FontAwesomeModule ],
+  imports: [ FontAwesomeModule, RouterModule ],
   templateUrl: './cambio-contrasena.component.html',
   styleUrl: './cambio-contrasena.component.css'
 })

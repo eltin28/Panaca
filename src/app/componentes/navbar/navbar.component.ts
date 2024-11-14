@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 // import { AuthService } from '../../servicios/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 import { TokenService } from '../../servicios/token.service';
 
 
@@ -16,30 +15,21 @@ import { TokenService } from '../../servicios/token.service';
 
 export class NavbarComponent {
 
-  nombre: any; 
   title = 'Broletos';
   logueado: boolean;
-  mostrarMenu: boolean;
+  mostrarMenu: boolean = false;
   bandera = false;
 
   constructor(private tokenService: TokenService){
     this.logueado = this.isLogged();
-    this.mostrarMenu = this.toggleMenu();
-    this.nombre = this.nombreUser();
   }
 
-  toggleMenu():  boolean{
-    return this.bandera === false?true:false;
+  toggleMenu(){
+    this.mostrarMenu = !this.mostrarMenu;
   }
 
-  public isLogged(): boolean{
+  public isLogged(){
     return this.tokenService.isLogged();
-  }
-
-  public nombreUser(): void {
-    if (this.logueado) {
-        this.nombre = this.tokenService.getAllTokenData().nombre;
-    }
   }
 
   public logout() {

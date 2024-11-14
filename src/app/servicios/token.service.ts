@@ -31,7 +31,9 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
-    this.router.navigate(["/"]);
+    this.router.navigate(["/"]).then(() => {
+      window.location.reload();
+    });
  }
 
  public logout() {
@@ -43,8 +45,10 @@ export class TokenService {
     const payload = token!.split(".")[1];
     const payloadDecoded = Buffer.from(payload, 'base64').toString('ascii');
     const values = JSON.parse(payloadDecoded);
+    console.log(values);
     return values;
   }
+  
 
 // Leer datos del usuario
  

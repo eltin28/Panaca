@@ -41,7 +41,8 @@ export class CrearEventoComponent {
   addLocalidad() {
     const localidadGroup = this.formBuilder.group({
       nombre: ['', [Validators.required]],
-      precio: ['', [Validators.required, Validators.min(1)]]
+      precio: ['', [Validators.required, Validators.min(1)]],
+      capacidad: ['', [Validators.required]]
     });
     this.localidades.push(localidadGroup);
   }

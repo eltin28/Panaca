@@ -1,4 +1,3 @@
-<app-navbar-admin></app-navbar-admin>
 <div class="event-list-container">
     <div class="section-title" style="color: black">
         <h2>Eventos Disponibles</h2>
@@ -19,9 +18,9 @@
 
     <!-- Botones de paginación para eventos disponibles -->
     <div class="pagination-container">
-        <button (click)="prevAvailablePage()" [disabled]="availablePage === 1" class="pagination-button">Anterior</button>
-        <span class="pagination-text">Página {{ availablePage }}</span>
-        <button (click)="nextAvailablePage()" [disabled]="availablePage === maxAvailablePage()" class="pagination-button">Siguiente</button>
+        <button (click)="prevAvailablePage()" [disabled]="availablePage === 1" class="pagination-button"><i class="fa-solid fa-arrow-left"></i></button>
+        <span class="pagination-text">{{ availablePage }}</span>
+        <button (click)="nextAvailablePage()" [disabled]="availablePage === maxAvailablePage()" class="pagination-button"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
 
@@ -43,8 +42,8 @@
     </div>
     <!-- Botones de paginación para eventos no disponibles -->
     <div class="pagination-container">
-        <button (click)="prevUnavailablePage()" [disabled]="unavailablePage === 1" class="pagination-button">Anterior</button>
-        <span class="pagination-text">Página {{ unavailablePage }}</span>
-        <button (click)="nextUnavailablePage()" [disabled]="unavailablePage === maxUnavailablePage()" class="pagination-button">Siguiente</button>
+        <button (click)="prevUnavailablePage()" [disabled]="unavailablePage === 1" class="pagination-button"><i class="fa-solid fa-arrow-left"></i></button>
+        <span class="pagination-text">{{ unavailablePage }}</span>
+        <button (click)="nextUnavailablePage()" [disabled]="unavailablePage === maxUnavailablePage()" class="pagination-button"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
 

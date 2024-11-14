@@ -22,6 +22,15 @@ export class TokenService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
+  public getEmail(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      return values.sub;
+    }
+    return "";
+   }   
+
   public isLogged(): boolean {
     if (this.getToken()) {
       return true;
@@ -31,13 +40,21 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
-    this.router.navigate(["/"]);
- }
+    const rol = this.getRol();
+    let destino = rol == "ADMINISTRADOR" ? "/home-admin" : "/home-cliente";
+    this.router.navigate([destino]).then(() => {
+      window.location.reload();
+    });
+   }
+   
 
- public logout() {
-  window.sessionStorage.clear();
-  this.router.navigate(["/login"]);
+  public logout() {
+    window.sessionStorage.clear();
+    this.router.navigate(["/login"]).then(() => {
+      window.location.reload();
+    });
   }
+ 
 
   private decodePayload(token: string): any {
     const payload = token!.split(".")[1];
@@ -48,14 +65,15 @@ export class TokenService {
 
 // Leer datos del usuario
  
- public getRol(): string {
-  const token = this.getToken();
-  if (token) {
-    const values = this.decodePayload(token);
-    return values.rol;
+  public getRol(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      return values.rol;
+    }
+    return "";
   }
-  return "";
- }
+ 
  
    //Con la funcion getAllTokenData simplifico la creacion de funciones para obtener datos separados
    public getAllTokenData(): InformacionCuentaDTO {

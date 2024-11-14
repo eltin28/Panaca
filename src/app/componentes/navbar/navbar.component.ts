@@ -16,30 +16,22 @@ import { TokenService } from '../../servicios/token.service';
 
 export class NavbarComponent {
 
-  nombre: any; 
+  email: string = "";
   title = 'Broletos';
-  logueado: boolean;
+  isLogged = false;
   mostrarMenu: boolean;
   bandera = false;
 
   constructor(private tokenService: TokenService){
-    this.logueado = this.isLogged();
+    this.isLogged = this.tokenService.isLogged();
     this.mostrarMenu = this.toggleMenu();
-    this.nombre = this.nombreUser();
+    if(this.isLogged){
+      this.email = this.tokenService.getEmail();
+    }
   }
 
   toggleMenu():  boolean{
     return this.bandera === false?true:false;
-  }
-
-  public isLogged(): boolean{
-    return this.tokenService.isLogged();
-  }
-
-  public nombreUser(): void {
-    if (this.logueado) {
-        this.nombre = this.tokenService.getAllTokenData().nombre;
-    }
   }
 
   public logout() {

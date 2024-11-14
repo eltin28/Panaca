@@ -2,26 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TipoCupon } from '../../enums/TipoCupon';
 import { EstadoCupon } from '../../enums/EstadoCupon';
-import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component';
-
+import { AdministradorService } from '../../servicios/administrador.service';
+import Swal from 'sweetalert2';
+import { CrearCuponDTO } from '../../dto/cupon/crear-cupon-dto';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-crear-cupon',
   standalone: true,
-  imports: [ReactiveFormsModule, NavbarAdminComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crear-cupon.component.html',
-  styleUrl: './crear-cupon.component.css'
+  styleUrls: ['./crear-cupon.component.css']
 })
 export class CrearCuponComponent implements OnInit {
   crearCuponForm!: FormGroup;
 
-  tiposCupon: TipoCupon[] = [TipoCupon.UNICO, TipoCupon.MULTIPLE];
-  estadosCupon: EstadoCupon[] = [EstadoCupon.DISPONIBLE, EstadoCupon.NO_DISPONIBLE]; 
+  tiposCupon: string[] = [];
+  estadosCupon: string[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private administradorService: AdministradorService) {}
 
   ngOnInit(): void {
     this.inicializarFormulario();
+    this.tiposCupon = Object.values(TipoCupon);
+    this.estadosCupon = Object.values(EstadoCupon);
   }
 
   private inicializarFormulario(): void {
@@ -30,7 +34,7 @@ export class CrearCuponComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       porcentajeDescuento: [null, [Validators.required, Validators.min(0.1), Validators.max(100)]],
       fechaVencimiento: [null, [Validators.required]],
-      fechaApertura: [null, [Validators.required]],
+      fechaApertura: [null],
       tipoCupon: [null, [Validators.required]],
       estadoCupon: [null, [Validators.required]],
     });
@@ -38,9 +42,26 @@ export class CrearCuponComponent implements OnInit {
 
   crearCupon(): void {
     if (this.crearCuponForm.valid) {
-      const cuponData = this.crearCuponForm.value;
-      // Lógica para enviar cuponData al backend
-      console.log('Cupón creado:', cuponData);
+      const cuponData: CrearCuponDTO = this.crearCuponForm.value;
+      this.administradorService.crearCupon(cuponData).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Cupón creado',
+            text: 'El cupón ha sido creado exitosamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          this.crearCuponForm.reset();
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error',
+            text: error.error.respuesta,
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
+      });
     } else {
       this.crearCuponForm.markAllAsTouched();
     }

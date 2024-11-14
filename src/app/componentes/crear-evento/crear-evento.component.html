@@ -1,4 +1,3 @@
-<app-navbar-admin></app-navbar-admin>
 <div class="crear-evento">
     <div class="container pt-5 pb-5">
         <div class="border rounded p-3 shadow" style="background-color: #171123; max-width: 950px; margin: auto;">
@@ -68,6 +67,10 @@
                     <div class="col">
                       <label for="precioLocalidad" class="form-label" style="color: #ffffff;">Precio Localidad:</label>
                       <input type="number" class="form-control" formControlName="precio" placeholder="Precio" style="border: 1px solid #007BFF;">
+                    </div>
+                    <div class="col">
+                      <label for="capacidadMaxima" class="form-label" style="color: #ffffff;">Capacidad Maxima:</label>
+                      <input type="number" class="form-control" formControlName="capacidad" placeholder="Capacidad" style="border: 1px solid #007BFF;">
                     </div>
                     <div class="col-auto">
                       <button type="button" class="btn btn-danger" (click)="removeLocalidad(i)">

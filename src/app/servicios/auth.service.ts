@@ -6,6 +6,7 @@ import { LoginDTO } from '../dto/cuenta/login-dto';
 import { CrearCuentaDTO } from '../dto/cuenta/crear-cuenta-dto';
 import { ValidarCodigoDTO } from '../dto/cuenta/validar-codigo-dto';
 import { CambiarPasswordDTO } from '../dto/cuenta/cambiar-password-dto';
+import { CodigoContraseniaDTO } from '../dto/cuenta/codigo-contrasenia-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class AuthService {
 
    public validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/validar-codigo-registro`, validarCodigoDTO);
+   }
+
+   public enviarCodigoRecuperacion(codigoContraseniaDTO: CodigoContraseniaDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/enviar-codigo-recuperacion-contasenia`, codigoContraseniaDTO);
    }
 
    public cambiarPassword(cambiarPasswordDTO: CambiarPasswordDTO): Observable<MensajeDTO> {

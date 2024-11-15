@@ -59,7 +59,6 @@ export class RegistroLoginComponent implements OnInit {
     );
 
    }
-   
 
   public registrar() {
     const crearCuenta = this.registroForm.value as CrearCuentaDTO;

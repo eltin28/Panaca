@@ -38,7 +38,9 @@ export class TokenService {
 
  public logout() {
   window.sessionStorage.clear();
-  this.router.navigate(["/login"]);
+  this.router.navigate(["/login"]).then(() => {
+    window.location.reload();
+  });
   }
 
   private decodePayload(token: string): any {

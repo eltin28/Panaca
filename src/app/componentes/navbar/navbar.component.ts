@@ -24,7 +24,7 @@ export class NavbarComponent {
     this.isLogged = this.tokenService.isLogged();
     this.mostrarMenu = this.toggleMenu();
     if(this.isLogged){
-      this.email = this.tokenService.getEmail();
+      this.email = this.tokenService.getAllTokenData().email;
     }
   }
 

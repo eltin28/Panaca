@@ -19,7 +19,7 @@ export class AuthService {
 
   private emailTemp: string;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private tokenService: TokenService, private router: Router) { 
     this.emailTemp = this.getEmailTemp();
   }
 
@@ -31,6 +31,16 @@ export class AuthService {
   getEmailTemp() {
     return this.emailTemp;
   }
+  
+
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    if (this.tokenService.isLogged()) {
+      this.router.navigate([""]);
+      return false;
+    }
+    return true;
+  }
+ 
   //_______________________________ METODOS CUENTA _____________________________________________
 
    public crearCuenta(cuentaDTO: CrearCuentaDTO): Observable<MensajeDTO> {

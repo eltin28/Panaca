@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CrearEventoDTO } from '../../dto/evento/crear-evento-dto';
 import Swal from 'sweetalert2';
@@ -11,13 +11,14 @@ import { TipoEvento } from '../../enums/TipoEvento';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crear-evento.component.html',
-  styleUrl: './crear-evento.component.css'
+  styleUrls: ['./crear-evento.component.css']
 })
 export class CrearEventoComponent {
-
-  crearEventoForm!: FormGroup; 
+  crearEventoForm!: FormGroup;
   tiposDeEvento: string[] = [];
-  
+  imagenPortadaPreview: string | ArrayBuffer | null = null;
+  imagenLocalidadesPreview: string | ArrayBuffer | null = null;
+
   constructor(private formBuilder: FormBuilder, private administradorService: AdministradorService) {
     this.crearFormulario();
     this.tiposDeEvento = Object.values(TipoEvento);
@@ -26,7 +27,7 @@ export class CrearEventoComponent {
   private crearFormulario(): void {
     this.crearEventoForm = this.formBuilder.group({
       nombreEvento: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],  
+      descripcion: ['', [Validators.required]],
       tipo: ['', [Validators.required]],
       direccionEvento: ['', [Validators.required]],
       ciudadEvento: ['', [Validators.required]],
@@ -57,19 +58,33 @@ export class CrearEventoComponent {
 
   public onFileChange(event: any, tipo: string) {
     if (event.target.files.length > 0) {
-      const files = event.target.files;
+      const file = event.target.files[0];
       switch (tipo) {
         case 'localidades':
-          this.crearEventoForm.get('imagenLocalidades')?.setValue(files[0]);
+          this.crearEventoForm.get('imagenLocalidades')?.setValue(file);
+          this.previewImage(file, 'localidades');
           break;
         case 'portada':
-          this.crearEventoForm.get('imagenPortada')?.setValue(files[0]);
+          this.crearEventoForm.get('imagenPortada')?.setValue(file);
+          this.previewImage(file, 'portada');
           break;
       }
     }
   }
 
-   crearEvento(): void {
+  previewImage(file: File, tipo: string) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (tipo === 'portada') {
+        this.imagenPortadaPreview = reader.result;
+      } else if (tipo === 'localidades') {
+        this.imagenLocalidadesPreview = reader.result;
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  crearEvento(): void {
     if (this.crearEventoForm.valid) {
       const eventoData: CrearEventoDTO = this.crearEventoForm.value;
       this.administradorService.crearEvento(eventoData).subscribe({
@@ -81,18 +96,18 @@ export class CrearEventoComponent {
             confirmButtonText: 'Aceptar'
           });
           this.crearEventoForm.reset();
-      },
-      error: (error) => {
-        Swal.fire({
-          title: 'Error al crear evento',
-          text: 'Ha ocurrido un error al crear el evento',
-          icon: 'error',
-          confirmButtonText: 'Aceptar'
+        },
+        error: (error) => {
+          Swal.fire({
+            title: 'Error al crear evento',
+            text: 'Ha ocurrido un error al crear el evento',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
+        }
       });
-    } 
-    });
     } else {
       this.crearEventoForm.markAllAsTouched();
     }
   }
-} 
+}

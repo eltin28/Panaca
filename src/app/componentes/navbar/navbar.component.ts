@@ -16,21 +16,25 @@ export class NavbarComponent {
 
   email: string = "";
   title = 'Broletos';
-  isLogged = false;
-  mostrarMenu: boolean;
+  logueado: boolean;
+  mostrarMenu: boolean = false;
   bandera = false;
 
   constructor(private tokenService: TokenService){
-    this.isLogged = this.tokenService.isLogged();
-    this.mostrarMenu = this.toggleMenu();
-    if(this.isLogged){
+    this.logueado = this.isLogged();
+    if(this.logueado){
       this.email = this.tokenService.getAllTokenData().email;
     }
   }
 
-  toggleMenu():  boolean{
-    return this.bandera === false?true:false;
+  toggleMenu(){
+    this.mostrarMenu = !this.mostrarMenu;
   }
+
+  public isLogged(){
+    return this.tokenService.isLogged();
+  }
+
 
   public logout() {
     this.tokenService.logout();

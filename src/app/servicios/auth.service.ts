@@ -14,7 +14,7 @@ import { CambiarPasswordDTO } from '../dto/cuenta/cambiar-password-dto';
 })
 export class AuthService {
 
-  private authURL = "http://localhost:8081/api/publico";
+  private authURL = "http://localhost:8081/api/auth";
 
 
   constructor(private http: HttpClient, private tokenService: TokenService, private router: Router) { }

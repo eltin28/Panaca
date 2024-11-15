@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TipoCupon } from '../../enums/TipoCupon';
 import { EstadoCupon } from '../../enums/EstadoCupon';
@@ -12,21 +12,20 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crear-cupon.component.html',
-  styleUrls: ['./crear-cupon.component.css']
+  styleUrl: './crear-cupon.component.css'
 })
-export class CrearCuponComponent implements OnInit {
+export class CrearCuponComponent {
   crearCuponForm!: FormGroup;
 
   tiposCupon: string[] = [];
   estadosCupon: string[] = [];
 
-  constructor(private fb: FormBuilder, private administradorService: AdministradorService) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private administradorService: AdministradorService) {
     this.inicializarFormulario();
     this.tiposCupon = Object.values(TipoCupon);
     this.estadosCupon = Object.values(EstadoCupon);
   }
+
 
   private inicializarFormulario(): void {
     this.crearCuponForm = this.fb.group({

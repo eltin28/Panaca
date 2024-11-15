@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 // import { AuthService } from '../../servicios/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 import { TokenService } from '../../servicios/token.service';
-
 
 @Component({
   selector: 'app-navbar',

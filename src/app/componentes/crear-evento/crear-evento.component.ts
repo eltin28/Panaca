@@ -1,25 +1,29 @@
 import { Component } from '@angular/core';
-import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NavbarAdminComponent } from '../navbar-admin/navbar-admin.component';
+import {FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CrearEventoDTO } from '../../dto/evento/crear-evento-dto';
+import Swal from 'sweetalert2';
+import { AdministradorService } from '../../servicios/administrador.service';
+import { TipoEvento } from '../../enums/TipoEvento';
 
 @Component({
   selector: 'app-crear-evento',
   standalone: true,
-  imports: [ReactiveFormsModule, NavbarAdminComponent, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crear-evento.component.html',
   styleUrl: './crear-evento.component.css'
 })
 export class CrearEventoComponent {
 
-  tiposDeEvento: string[] = ['Concierto', 'Fiesta', 'Teatro', 'Deportes'];
   crearEventoForm!: FormGroup; 
-
-  constructor(private formBuilder: FormBuilder) {
+  tiposDeEvento: string[] = [];
+  
+  constructor(private formBuilder: FormBuilder, private administradorService: AdministradorService) {
     this.crearFormulario();
+    this.tiposDeEvento = Object.values(TipoEvento);
   }
 
-  private crearFormulario() {
+  private crearFormulario(): void {
     this.crearEventoForm = this.formBuilder.group({
       nombreEvento: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],  
@@ -32,7 +36,6 @@ export class CrearEventoComponent {
     });
   }
 
-  // Getter para acceder al array de localidades en el formulario
   get localidades() {
     return (this.crearEventoForm.get('localidades') as FormArray);
   }
@@ -66,11 +69,30 @@ export class CrearEventoComponent {
     }
   }
 
-  public crearEvento() {
+   crearEvento(): void {
     if (this.crearEventoForm.valid) {
-      console.log(this.crearEventoForm.value);
+      const eventoData: CrearEventoDTO = this.crearEventoForm.value;
+      this.administradorService.crearEvento(eventoData).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: 'Evento creado con éxito',
+            text: 'El evento ha sido creado correctamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          this.crearEventoForm.reset();
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error al crear evento',
+          text: 'Ha ocurrido un error al crear el evento',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+      });
+    } 
+    });
     } else {
-      console.log('Formulario inválido');
+      this.crearEventoForm.markAllAsTouched();
     }
   }
-}
+} 

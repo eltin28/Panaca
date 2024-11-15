@@ -71,6 +71,7 @@ export class TokenService {
       const values = this.decodePayload(token);
       return values.rol;
     }
+
     return "";
   }
  

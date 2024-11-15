@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PublicoService } from '../../servicios/publico.service';
 import { Evento } from '../../models/Evento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-evento-admin',
@@ -12,35 +13,54 @@ import { Evento } from '../../models/Evento';
   styleUrls: ['./info-evento-admin.component.css']
 })
 export class InfoEventoAdminComponent implements OnInit {
-  event: Evento | undefined;
+  evento: Evento= {
+    id: '',
+    imagenPortada: '',
+    imagenLocalidad: '',
+    nombre: '', 
+    descripcion: '',
+    direccion: '',
+    ciudad: '',
+    fecha: new Date,
+    tipoEvento: '',
+    estado: '',
+    listaLocalidades: [],
+  }
 
   constructor(
     private route: ActivatedRoute,
-    private publicoService: PublicoService
+    private publicoService: PublicoService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    const eventId = this.route.snapshot.paramMap.get('id');
-    if (eventId) {
-      this.verEvento(eventId);
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.obtenerEvento(id);
+    } else {
+      console.error('ID del evento no encontrado en la ruta');
     }
   }
 
-  verEvento(id: string): void {
-    this.publicoService.obtenerEvento(id).subscribe({
-      next: (data) => {
-        this.event = data;
-        console.log('Evento obtenido:', data); // Para depurar los datos recibidos
+
+  obtenerEvento(id: string): void {
+    this.publicoService.obtenerEvento(id).subscribe(
+      (data: Evento) => {
+        
+        this.evento = {
+          ...data,
+          fecha: new Date(data.fecha)
+        };
       },
-      error: (error) => {
+      (error) => {
         console.error('Error al obtener el evento:', error);
       }
-    });
+    );
   }
 
   editEvent(): void {
     // Redirige a la ruta de edición (ajusta la ruta según tu configuración de rutas)
-    const eventId = this.event?.id;
+    const eventId = this.evento?.id;
     if (eventId) {
       // Suponiendo que tienes una ruta configurada para editar un evento
       window.location.href = `/editar-evento`;

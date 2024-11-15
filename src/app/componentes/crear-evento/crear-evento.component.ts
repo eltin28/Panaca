@@ -5,19 +5,21 @@ import { CrearEventoDTO } from '../../dto/evento/crear-evento-dto';
 import Swal from 'sweetalert2';
 import { AdministradorService } from '../../servicios/administrador.service';
 import { TipoEvento } from '../../enums/TipoEvento';
+import { CrearLocalidadDTO } from '../../dto/evento/crear-localidad-dto';
 
 @Component({
   selector: 'app-crear-evento',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crear-evento.component.html',
-  styleUrls: ['./crear-evento.component.css']
+  styleUrl: './crear-evento.component.css'
 })
 export class CrearEventoComponent {
   crearEventoForm!: FormGroup;
   tiposDeEvento: string[] = [];
   imagenPortadaPreview: string | ArrayBuffer | null = null;
   imagenLocalidadesPreview: string | ArrayBuffer | null = null;
+  localidad!: CrearLocalidadDTO;
 
   constructor(private formBuilder: FormBuilder, private administradorService: AdministradorService) {
     this.crearFormulario();
@@ -26,32 +28,31 @@ export class CrearEventoComponent {
 
   private crearFormulario(): void {
     this.crearEventoForm = this.formBuilder.group({
-      nombreEvento: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      tipo: ['', [Validators.required]],
-      direccionEvento: ['', [Validators.required]],
-      ciudadEvento: ['', [Validators.required]],
-      localidades: this.formBuilder.array([]),
       imagenPortada: ['', [Validators.required]],
-      imagenLocalidades: ['', [Validators.required]]
+      imagenLocalidad: ['', [Validators.required]], // Asegúrate de que coincida con el DTO
+      nombre: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
+      direccion: ['', [Validators.required]],
+      tipoEvento: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
+      ciudad: ['', [Validators.required]],
+      listaLocalidades: this.formBuilder.array([]), // Inicialización correcta
     });
   }
 
   get localidades() {
-    return (this.crearEventoForm.get('localidades') as FormArray);
+    return (this.crearEventoForm.get('listaLocalidades') as FormArray);
   }
 
-  // Método para agregar una localidad al array
   addLocalidad() {
     const localidadGroup = this.formBuilder.group({
       nombre: ['', [Validators.required]],
-      precio: ['', [Validators.required, Validators.min(1)]],
-      capacidad: ['', [Validators.required]]
+      capacidadMaxima: ['', [Validators.required]],
+      precio: ['', [Validators.required, Validators.min(1)]]
     });
     this.localidades.push(localidadGroup);
   }
 
-  // Método para eliminar una localidad del array
   removeLocalidad(index: number) {
     this.localidades.removeAt(index);
   }
@@ -59,13 +60,14 @@ export class CrearEventoComponent {
   public onFileChange(event: any, tipo: string) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      console.log(file);
       switch (tipo) {
         case 'localidades':
-          this.crearEventoForm.get('imagenLocalidades')?.setValue(file);
+          this.crearEventoForm.get('imagenLocalidad')?.setValue("test");
           this.previewImage(file, 'localidades');
           break;
         case 'portada':
-          this.crearEventoForm.get('imagenPortada')?.setValue(file);
+          this.crearEventoForm.get('imagenPortada')?.setValue("test");
           this.previewImage(file, 'portada');
           break;
       }
@@ -86,8 +88,10 @@ export class CrearEventoComponent {
 
   crearEvento(): void {
     if (this.crearEventoForm.valid) {
+      console.log("Prueba")
       const eventoData: CrearEventoDTO = this.crearEventoForm.value;
       this.administradorService.crearEvento(eventoData).subscribe({
+
         next: (response) => {
           Swal.fire({
             title: 'Evento creado con éxito',

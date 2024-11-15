@@ -1,22 +1,16 @@
-import { EstadoCupon } from "../enums/EstadoCupon";
-import { TipoEvento } from "../enums/TipoEvento";
+import { Localidad } from "./Localidad";
 
 export interface Evento {
   id: string;
   imagenPortada: string;
-  imagenLocalidad: string; // Corrige el nombre
+  imagenLocalidad: string;
   nombre: string;
   descripcion: string;
   direccion: string;
   ciudad: string;
   fecha: Date;
-  tipoEvento: TipoEvento;
-  estado: EstadoCupon;
+  tipoEvento: string;
+  estado: string;
   listaLocalidades: Localidad[];
 }
 
-export interface Localidad {
-  nombre: string;
-  capacidadMaxima: number;
-  precio: number;
-}

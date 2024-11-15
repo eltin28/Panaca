@@ -40,6 +40,10 @@ export class TokenService {
 
   public login(token: string) {
     this.setToken(token);
+    this.router.navigate(["/"]).then(() => {
+      window.location.reload();
+    });
+ }
     const rol = this.getRol();
     let destino = rol == "ADMINISTRADOR" ? "/home-admin" : "/home-cliente";
     this.router.navigate([destino]).then(() => {
@@ -48,11 +52,11 @@ export class TokenService {
    }
    
 
-  public logout() {
-    window.sessionStorage.clear();
-    this.router.navigate(["/login"]).then(() => {
-      window.location.reload();
-    });
+ public logout() {
+  window.sessionStorage.clear();
+  this.router.navigate(["/login"]).then(() => {
+    window.location.reload();
+  });
   }
  
 
@@ -60,8 +64,10 @@ export class TokenService {
     const payload = token!.split(".")[1];
     const payloadDecoded = Buffer.from(payload, 'base64').toString('ascii');
     const values = JSON.parse(payloadDecoded);
+    console.log(values);
     return values;
   }
+  
 
 // Leer datos del usuario
  

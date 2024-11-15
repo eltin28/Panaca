@@ -3,19 +3,18 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AbstractControlOptions, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 import { AuthService } from '../../servicios/auth.service';
-import  Swal  from 'sweetalert2';
-// import { AlertaComponent } from '../alerta/alerta.component';
-// import { Alerta } from '../../dto/alerta';
+import Swal from 'sweetalert2';
 import { TokenService } from '../../servicios/token.service';
 import { CrearCuentaDTO } from '../../dto/cuenta/crear-cuenta-dto';
 import { LoginDTO } from '../../dto/cuenta/login-dto';
+import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [ReactiveFormsModule , FontAwesomeModule, 
-    // AlertaComponent
-  ],
+  imports: [ ReactiveFormsModule , FontAwesomeModule, RouterModule ],
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
@@ -23,14 +22,13 @@ export class RegistroLoginComponent implements OnInit {
 
   container: HTMLElement | null = null;
   showPassword = false;
-  activeIcon = 'fa-eye'; //el icono de ojo abierto está activo
-  // alerta!:Alerta;
+  activeIcon = 'fa-eye';
   registroForm!: FormGroup;
   loginForm!: FormGroup;
 
 
-  constructor(@Inject(DOCUMENT, ) private document: Document, private formBuilder: FormBuilder,
-    private authService: AuthService, private tokenService: TokenService
+  constructor(@Inject(DOCUMENT ) private document: Document, private formBuilder: FormBuilder,
+    private authService: AuthService, private tokenService: TokenService, private router: Router
   ) {
 
     this.crearFormulario();
@@ -61,17 +59,24 @@ export class RegistroLoginComponent implements OnInit {
     );
 
    }
-   
 
   public registrar() {
     const crearCuenta = this.registroForm.value as CrearCuentaDTO;
     this.authService.crearCuenta(crearCuenta).subscribe({
       next: (data) => {
+        const email = this.registroForm.get('email')?.value;
+        console.log("Cohio el email" + email);
+        this.authService.setEmailTemp(email);
         Swal.fire({
           title: 'Cuenta creada',
           text: 'La cuenta se ha creado correctamente',
           icon: 'success',
-          confirmButtonText: 'Aceptar'
+          confirmButtonText: 'Aceptar',
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+           this.router.navigate(["/codigo-validacion"]);
+          }
         })
       },
       error: (error) => {

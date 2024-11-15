@@ -25,48 +25,17 @@
   </div>
 </div>
 <div class="card-container">
+  @for (evento of eventos; track $index) {
   <div class="event-card" routerLink="/evento">
     <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
     <div class="event-content">
-      <h3 class="event-title">Título del Evento</h3>
+      <h3 class="event-title">{{evento.nombre}}</h3>
       <div class="event-info">
-        <span class="event-type">Tipo de Evento</span>
-        <span class="event-location">Lugar del Evento</span>
+        <span class="event-type">{{evento.tipoEvento}}</span>
+        <span class="event-location">{{evento.ciudad}}</span>
       </div>
-      <div class="event-date">Fecha del Evento</div>
+      <div class="event-date">{{evento.fecha}}</div>
     </div>
   </div>
-  <div class="event-card">
-    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
-    <div class="event-content">
-      <h3 class="event-title">Título del Evento</h3>
-      <div class="event-info">
-        <span class="event-type">Tipo de Evento</span>
-        <span class="event-location">Lugar del Evento</span>
-      </div>
-      <div class="event-date">Fecha del Evento</div>
-    </div>
-  </div>
-  <div class="event-card">
-    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
-    <div class="event-content">
-      <h3 class="event-title">Título del Evento</h3>
-      <div class="event-info">
-        <span class="event-type">Tipo de Evento</span>
-        <span class="event-location">Lugar del Evento</span>
-      </div>
-      <div class="event-date">Fecha del Evento</div>
-    </div>
-  </div>
-  <div class="event-card">
-    <img src="concierto.jpg" alt="Imagen del evento" class="event-image">
-    <div class="event-content">
-      <h3 class="event-title">Título del Evento</h3>
-      <div class="event-info">
-        <span class="event-type">Tipo de Evento</span>
-        <span class="event-location">Lugar del Evento</span>
-      </div>
-      <div class="event-date">Fecha del Evento</div>
-    </div>
-  </div>
+  }
 </div>  

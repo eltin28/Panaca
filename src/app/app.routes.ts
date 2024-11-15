@@ -6,6 +6,7 @@ import { EventosComponent } from './componentes/eventos/eventos.component';
 import { EventoUnidadComponent } from './componentes/evento-unidad/evento-unidad.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { CambioContrasenaComponent } from './componentes/cambio-contrasena/cambio-contrasena.component'
+import { CodigoValidacionComponent } from './componentes/codigo-validacion/codigo-validacion.component';
 import { HomeAdminComponent } from './componentes/home-admin/home-admin.component';
 import { EventosAdminComponent } from './componentes/eventos-admin/eventos-admin.component';
 import { CrearCuponComponent } from './componentes/crear-cupon/crear-cupon.component';
@@ -26,6 +27,7 @@ export const routes: Routes = [
    { path: 'crear-cupon', component: CrearCuponComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'cupones-admin', component: CuponesAdminComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'cambio-contrasena', component: CambioContrasenaComponent },
+   { path: 'codigo-validacion', component: CodigoValidacionComponent},
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];
 

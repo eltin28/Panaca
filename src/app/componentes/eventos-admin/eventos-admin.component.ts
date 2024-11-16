@@ -41,15 +41,18 @@ export class EventosAdminComponent implements OnInit {
 
     cargarEventosDisponibles() {
         this.administradorService.obtenerEventosDisponibles(this.paginaActualDisponibles, this.size).subscribe(data => {
-            this.listaEventosDisponibles = data.content;
-            this.totalPaginasDisponibles = data.totalPages;
+          console.log('Eventos Disponibles:', data.content); // Validar datos
+          this.listaEventosDisponibles = data.content;
+          this.totalPaginasDisponibles = data.totalPages;
         });
-    }
-
-    cargarEventosNoDisponibles() {
+      }
+      
+      cargarEventosNoDisponibles() {
         this.administradorService.obtenerEventosInactivos(this.paginaActualNoDisponibles, this.size).subscribe(data => {
-            this.listaEventosNoDisponibles = data.content;
-            this.totalPaginasNoDisponibles = data.totalPages;
+          console.log('Eventos No Disponibles:', data.content); // Validar datos
+          this.listaEventosNoDisponibles = data.content;
+          this.totalPaginasNoDisponibles = data.totalPages;
         });
-    }
+      }
+      
 }

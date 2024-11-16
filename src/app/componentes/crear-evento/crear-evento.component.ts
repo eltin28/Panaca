@@ -60,20 +60,36 @@ export class CrearEventoComponent {
   public onFileChange(event: any, tipo: string) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log(file);
-      switch (tipo) {
-        case 'localidades':
-          this.crearEventoForm.get('imagenLocalidad')?.setValue("test");
-          this.previewImage(file, 'localidades');
-          break;
-        case 'portada':
-          this.crearEventoForm.get('imagenPortada')?.setValue("test");
-          this.previewImage(file, 'portada');
-          break;
-      }
+      const formData = new FormData();
+      formData.append('imagen', file); // Nombre esperado por el backend
+  
+      // Subir imagen
+      this.administradorService.subir(formData).subscribe({
+        next: (response) => {
+          const url = response.respuesta; // URL retornada del backend
+          if (tipo === 'portada') {
+            this.crearEventoForm.get('imagenPortada')?.setValue(url);
+            this.previewImage(file, 'portada');
+          } else if (tipo === 'localidades') {
+            this.crearEventoForm.get('imagenLocalidad')?.setValue(url);
+            this.previewImage(file, 'localidades');
+          }
+          console.log(this.crearEventoForm.value)
+        },
+        error: (error) => {
+          console.error('Error al subir imagen:', error);
+          Swal.fire({
+            title: 'Error al subir imagen',
+            text: 'No se pudo subir la imagen al servidor.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+          });
+        },
+      });
     }
   }
-
+  
+  
   previewImage(file: File, tipo: string) {
     const reader = new FileReader();
     reader.onload = () => {
@@ -88,30 +104,34 @@ export class CrearEventoComponent {
 
   crearEvento(): void {
     if (this.crearEventoForm.valid) {
-      console.log("Prueba")
       const eventoData: CrearEventoDTO = this.crearEventoForm.value;
+  
       this.administradorService.crearEvento(eventoData).subscribe({
-
         next: (response) => {
           Swal.fire({
             title: 'Evento creado con éxito',
             text: 'El evento ha sido creado correctamente',
             icon: 'success',
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Aceptar',
           });
           this.crearEventoForm.reset();
+          this.imagenPortadaPreview = null;
+          this.imagenLocalidadesPreview = null;
         },
         error: (error) => {
+          console.error('Error al crear evento:', error);
           Swal.fire({
             title: 'Error al crear evento',
             text: 'Ha ocurrido un error al crear el evento',
             icon: 'error',
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Aceptar',
           });
-        }
+        },
       });
     } else {
       this.crearEventoForm.markAllAsTouched();
     }
   }
+  
+  
 }

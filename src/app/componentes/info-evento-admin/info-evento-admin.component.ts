@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PublicoService } from '../../servicios/publico.service';
+import { AdministradorService } from '../../servicios/administrador.service';
 import { Evento } from '../../models/Evento';
 import { Router } from '@angular/router';
 
@@ -27,8 +28,11 @@ export class InfoEventoAdminComponent implements OnInit {
     listaLocalidades: [],
   }
 
+  showConfirmDelete: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
+    private administradorService: AdministradorService,
     private publicoService: PublicoService,
     private router: Router,
   ) {}
@@ -71,5 +75,30 @@ export class InfoEventoAdminComponent implements OnInit {
     window.history.back(); // Regresa a la página anterior
   }
 
+  confirmDelete(): void {
+    this.showConfirmDelete = true;  // Muestra el mensaje de confirmación
+  }
+
+  cancelDelete(): void {
+    this.showConfirmDelete = false;  // Oculta el mensaje de confirmación
+  }
+
+  deleteEvent(): void {
+    const eventId = this.evento?.id;
+    if (eventId) {
+      this.administradorService.eliminarEvento(eventId).subscribe(
+        (response) => {
+          alert('Evento eliminado con éxito');
+          this.router.navigate(['/eventos']);  // Redirige a la lista de eventos después de eliminar
+        },
+        (error) => {
+          console.error('Error al eliminar el evento:', error);
+          alert('Hubo un error al eliminar el evento');
+        }
+      );
+    } else {
+      alert('No se pudo encontrar el ID del evento');
+    }
+  }
 
 }

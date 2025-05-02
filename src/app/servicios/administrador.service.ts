@@ -17,7 +17,7 @@ import { Page } from '../models/Page';
 export class AdministradorService {
 
 
- private adminURL = "https://unieventos-0nly.onrender.com/api/admin";
+ private adminURL = "https://Panaca-0nly.onrender.com/api/admin";
 
 
  constructor(private http: HttpClient) { }

@@ -11,7 +11,7 @@ import { Evento } from '../models/Evento';
 export class PublicoService {
 
 
- private publicoURL = "https://unieventos-0nly.onrender.com/api/publico";
+ private publicoURL = "https://Panaca-0nly.onrender.com/api/publico";
 
 
  constructor(private http: HttpClient) { }

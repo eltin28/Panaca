@@ -15,7 +15,7 @@ import { TokenService } from './servicios/token.service';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'UniEventos-Front';
+  title = 'Panaca-Front';
 
   selectedDate: string = '';
   rol: string = '';

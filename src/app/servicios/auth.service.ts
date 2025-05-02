@@ -15,7 +15,7 @@ import { CodigoContraseniaDTO } from '../dto/cuenta/codigo-contrasenia-dto';
 })
 export class AuthService {
 
-  private authURL = "https://unieventos-0nly.onrender.com/api/auth";
+  private authURL = "https://Panaca-0nly.onrender.com/api/auth";
 
   private emailTemp: string;
 

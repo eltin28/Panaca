@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "UniEventos-Front": {
+    "Panaca-Front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/uni-eventos-front",
+            "outputPath": "dist/panaca-front",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "UniEventos-Front:build:production"
+              "buildTarget": "Panaca-Front:build:production"
             },
             "development": {
-              "buildTarget": "UniEventos-Front:build:development"
+              "buildTarget": "Panaca-Front:build:development"
             }
           },
           "defaultConfiguration": "development"

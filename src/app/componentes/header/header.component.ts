@@ -19,7 +19,7 @@ export class HeaderComponent {
   constructor(private tokenService: TokenService){
     this.isLogged = this.tokenService.isLogged();
     if(this.isLogged){
-      this.email = this.tokenService.getEmail();
+      
     }
   }
 

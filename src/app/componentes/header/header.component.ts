@@ -11,7 +11,7 @@ import { TokenService } from '../../servicios/token.service';
 })
 export class HeaderComponent {
 
-  title = 'Broletos';
+  title = 'PANACA';
 
   isLogged = false;
   email: string= "";

@@ -5,4 +5,6 @@ export interface ItemsCuponDTO {
     descuento: number,
     tipo: string,
     estado: string
+    cuponId: string,
+    cantidadUsos: number
 }

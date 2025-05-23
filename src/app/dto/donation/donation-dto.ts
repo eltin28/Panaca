@@ -1,5 +1,6 @@
+import { DonationItemDTO } from "./donation-item-dto";
+
 export interface DonationDTO {
-  idUsuario: string;
-  monto: number;
-  fecha: string;
+  donanteId: string;
+  items: DonationItemDTO[];
 }

@@ -1,16 +1,11 @@
-import { CrearLocalidadDTO } from "./crear-localidad-dto";
+import { EstadoEvento } from "../../enums/EstadoEvento";
+import { TipoEvento } from "../../enums/TipoEvento";
 
 export interface EditarEventoDTO {
-    id: string,
     nombre: string,
     descripcion: string,
-    direccion: string,
-    ciudad: string,
-    fecha: Date,
     imagenPortada: string,
-    imagenLocalidad: string,
-    listaLocalidades: CrearLocalidadDTO[],
-    tipoEvento: string,
-    estadoEvento: string,
+    estadoEvento: EstadoEvento,
+    tipoEvento: TipoEvento,
     precio: number,
 }

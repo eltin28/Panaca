@@ -1,12 +1,10 @@
+import { TipoEvento } from "../../enums/TipoEvento";
+
 export interface ItemEventoDTO {
     id: string,
-    urlImagenPortada: string,
     nombre: string,
-    tipoEvento: string,
-    fecha: Date,
-    direccion: string,
-    ciudad: string,
     descripcion: string,
     imagenPortada: string,
+    tipoEvento: TipoEvento,
     precio: number
 }

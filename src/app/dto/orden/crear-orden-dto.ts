@@ -2,11 +2,8 @@ import { DetalleOrdenDTO } from "./detalle-orden-dto"
 
 export interface CrearOrdenDTO {
     idCliente: string,
-    idCupon: string,
+    codigoCupon: string,
     codigoPasarela: string,
-    fecha: Date,
+    fecha: string,
     detalleOrden: DetalleOrdenDTO[],
-    total: number,
-    cuponId: string,
-    carritoId: string;
 }

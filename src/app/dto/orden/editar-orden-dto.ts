@@ -1,6 +1,7 @@
+import { DetalleOrdenDTO } from "./detalle-orden-dto";
+
 export interface EditarOrdenDTO {
     id: string,
-    idCupon: string,
-    total: number,
-    cuponId: string
+    codigoCupon: string,
+    detalleOrden: DetalleOrdenDTO[],
 }

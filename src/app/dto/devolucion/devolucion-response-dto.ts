@@ -1,5 +1,10 @@
+import { EstadoDevolucion } from "../../enums/EstadoDevolucion";
+import { TipoDevolucion } from "../../enums/TipoDevolucion";
+
 export interface DevolucionResponseDTO {
   id: string;
-  estado: string;
-  fechaProcesamiento: string;
+  tipo: TipoDevolucion;
+  referenciaId: string;
+  fechaSolicitud: string
+  estado: EstadoDevolucion;
 }

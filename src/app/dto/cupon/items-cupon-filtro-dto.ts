@@ -1,4 +1,11 @@
+import { EstadoCupon } from "../../enums/EstadoCupon";
+import { TipoCupon } from "../../enums/TipoCupon";
+
 export interface ItemsCuponFiltroDTO {
-  cuponId: string;
-  usuarioId: string;
+    nombre: string,
+    fechaVencimiento: string,
+    fechaApertura: string,
+    descuento: number,
+    tipo: TipoCupon,
+    estado: EstadoCupon
 }

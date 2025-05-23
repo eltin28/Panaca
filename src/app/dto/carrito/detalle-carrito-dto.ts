@@ -1,7 +1,6 @@
 export interface DetalleCarritoDTO {
-    cantidad: number;
-    nombreLocalidad: string; 
-    idEvento: string; 
-    fechaAgregacion: Date; 
+      idEvento: string;   
+      cantidad: number;
+      fechaUso: string; 
   }
   

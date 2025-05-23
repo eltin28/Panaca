@@ -1,4 +1,6 @@
+import { AnimalType } from "../../enums/AnimalType";
+
 export interface DonationItemDTO {
-  donationId: string;
-  usuarioId: string;
+  tipoAnimal: AnimalType;
+  cantidadBultos: number;
 }

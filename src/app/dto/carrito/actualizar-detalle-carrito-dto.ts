@@ -1,6 +1,4 @@
-import { DetalleCarritoDTO } from './detalle-carrito-dto';
-
 export interface ActualizarCarritoDTO {
-  items: DetalleCarritoDTO[];
-  fecha: Date;
+  cantidad: number;
+  fechaUso: string;
 }

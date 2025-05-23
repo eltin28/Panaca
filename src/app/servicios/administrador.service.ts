@@ -51,7 +51,7 @@ public obtenerLocalidad(nombre: string): Observable<MensajeDTO> {
 
 obtenerEventosDisponibles(page: number,size: number): Observable<Page<any>> {
   const params = new HttpParams()
-    .set('page', page.toString())
+    .set('page', page.tostring())
     .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
 
   return this.http.get<Page<any>>(`${this.adminURL}/evento-activos`, { params });
@@ -60,7 +60,7 @@ obtenerEventosDisponibles(page: number,size: number): Observable<Page<any>> {
 
 obtenerEventosInactivos(page: number,size: number): Observable<Page<any>> {
   const params = new HttpParams()
-    .set('page', page.toString())
+    .set('page', page.tostring())
     .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
 
   return this.http.get<Page<any>>(`${this.adminURL}/evento-inactivos`, { params });
@@ -100,7 +100,7 @@ public obtenerInformacionCupon(id: string): Observable<MensajeDTO> {
   
   obtenerCuponesDisponibles(page: number,size: number): Observable<Page<any>> {
     const params = new HttpParams()
-      .set('page', page.toString())
+      .set('page', page.tostring())
       .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
 
     return this.http.get<Page<any>>(`${this.adminURL}/cupones-disponibles`, { params });
@@ -109,7 +109,7 @@ public obtenerInformacionCupon(id: string): Observable<MensajeDTO> {
   
   obtenerCuponesNoDisponibles(page: number,size: number): Observable<Page<any>> {
     const params = new HttpParams()
-      .set('page', page.toString())
+      .set('page', page.tostring())
       .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
 
     return this.http.get<Page<any>>(`${this.adminURL}/cupones-no-disponibles`, { params });

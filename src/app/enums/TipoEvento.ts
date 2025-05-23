@@ -1,9 +1,4 @@
 export enum TipoEvento {
-    FESTIVAL = 'FESTIVAL',
-    CONCIERTO = 'CONCIERTO',
-    DEPORTIVO = 'DEPORTIVO',
-    MODA = 'MODA',
-    TEATRO = 'TEATRO',
-    FERIA = 'FERIA',
-    COMPETENCIA = 'COMPETENCIA'
+    ADULTO = 'ADULTO',
+    NINO = 'NINO',
   }

@@ -1,4 +1,7 @@
+import { TipoDevolucion } from "../../enums/TipoDevolucion";
+
 export interface DevolucionRequestDTO {
-  idOrden: string;
-  motivo: string;
+  cuentaId: string;
+  tipo: TipoDevolucion;
+  referenciaId: string;
 }

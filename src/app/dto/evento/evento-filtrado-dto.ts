@@ -1,11 +1,8 @@
-import { Localidad } from "./localidad"
+import { EstadoEvento } from "../../enums/EstadoEvento";
+import { TipoEvento } from "../../enums/TipoEvento";
 
 export interface EventoFiltradoDTO {
-    urlImagenPortada: string,
     nombre: string,
-    direccion: string,
-    ciudad: string,
-    fecha: Date,
-    tipoEvento: string,
-    listaLocalidades: Localidad[]
+    tipoEvento: TipoEvento,
+    estadoEvento: EstadoEvento,
 }

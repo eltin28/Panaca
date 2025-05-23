@@ -15,7 +15,7 @@ import { TokenService } from '../../servicios/token.service';
 export class NavbarComponent {
 
   email: string = "";
-  title = 'Broletos';
+  title = 'Panaca';
   logueado: boolean;
   mostrarMenu: boolean = false;
   bandera = false;

@@ -52,7 +52,6 @@ export class TokenService {
     const payload = token!.split(".")[1];
     const payloadDecoded = Buffer.from(payload, 'base64').toString('ascii');
     const values = JSON.parse(payloadDecoded);
-    console.log(values);
     return values;
   }
   

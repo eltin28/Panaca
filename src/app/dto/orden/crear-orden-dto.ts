@@ -6,5 +6,7 @@ export interface CrearOrdenDTO {
     codigoPasarela: string,
     fecha: Date,
     detalleOrden: DetalleOrdenDTO[],
-    total: number
+    total: number,
+    cuponId: string,
+    carritoId: string;
 }

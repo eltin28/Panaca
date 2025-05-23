@@ -5,5 +5,8 @@ export interface ItemEventoDTO {
     tipoEvento: string,
     fecha: Date,
     direccion: string,
-    ciudad: string
+    ciudad: string,
+    descripcion: string,
+    imagenPortada: string,
+    precio: number
 }

@@ -2,5 +2,6 @@ export interface DetalleOrdenDTO {
     idEvento: string,
     precio: number,
     nombreLocalidad: string,
-    cantidad: number
+    cantidad: number,
+    precioUnitario: number
 }

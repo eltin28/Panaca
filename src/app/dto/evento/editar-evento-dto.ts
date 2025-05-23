@@ -12,4 +12,5 @@ export interface EditarEventoDTO {
     listaLocalidades: CrearLocalidadDTO[],
     tipoEvento: string,
     estadoEvento: string,
+    precio: number,
 }

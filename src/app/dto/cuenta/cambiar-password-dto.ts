@@ -1,4 +1,6 @@
 export interface CambiarPasswordDTO {
-    codigoVerificacion: string,
+    codigoVerificacion: string;
+    idUsuario: string;
+  passwordAnterior: string;
     passwordNueva: string
 }

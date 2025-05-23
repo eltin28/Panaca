@@ -1,5 +1,6 @@
 export interface EditarOrdenDTO {
     id: string,
     idCupon: string,
-    total: number
+    total: number,
+    cuponId: string
 }

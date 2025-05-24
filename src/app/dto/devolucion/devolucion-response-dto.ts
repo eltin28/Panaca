@@ -1,5 +1,5 @@
-import { EstadoDevolucion } from "../../enums/EstadoDevolucion";
-import { TipoDevolucion } from "../../enums/TipoDevolucion";
+import { EstadoDevolucion } from "../../models/enums/EstadoDevolucion";
+import { TipoDevolucion } from "../../models/enums/TipoDevolucion";
 
 export interface DevolucionResponseDTO {
   id: string;

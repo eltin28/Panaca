@@ -26,14 +26,9 @@ export class RolesService {
      this.router.navigate([""]);
      return false;
    }
-
-
    return true;
  }
-
-
 }
-
 
 export const RolesGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
  return inject(RolesService).canActivate(next, state);

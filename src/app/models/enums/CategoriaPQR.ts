@@ -1,4 +1,4 @@
-export enum categoriaPQR {
+export enum CategoriaPQR {
     SERVICIO_CLIENTE = "SERVICIO_CLIENTE",
     RECLAMO = "RECLAMO",
     FACTURACION = "FACTURACION",

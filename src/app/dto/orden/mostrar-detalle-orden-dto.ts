@@ -1,4 +1,4 @@
-import { TipoEvento } from "../../enums/TipoEvento";
+import { TipoEvento } from "../../models/enums/TipoEvento";
 
 export interface MostrarDetalleOrdenDTO {
   idEvento: string;

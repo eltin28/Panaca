@@ -1,4 +1,5 @@
-import { categoriaPQR } from "../../enums/CategoriaPQR";
+import { CategoriaPQR } from "../../models/enums/CategoriaPQR";
+import { EstadoPQR } from "../../models/enums/EstadoPQR";
 
 export interface InformacionPQRDTO {
     id: string,
@@ -6,8 +7,8 @@ export interface InformacionPQRDTO {
     telefonoUsuario: string,
     emailUsuario: string,
     fechaCreacion: string,
-    /*estadoPQR: ,*/
-    categoriaPQR: categoriaPQR,
+    estadoPQR: EstadoPQR,
+    categoriaPQR: CategoriaPQR,
     descripcion: string,
     respuesta: string,
     fechaRespuesta: string

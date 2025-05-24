@@ -1,7 +1,7 @@
-import { categoriaPQR } from "../../enums/CategoriaPQR";
+import { CategoriaPQR } from "../../models/enums/CategoriaPQR";
 
 export interface CrearPQRDTO {
     idUsuario: string,
-    categoriaPQR: categoriaPQR,
+    categoriaPQR: CategoriaPQR,
     descripcion: string,
 }

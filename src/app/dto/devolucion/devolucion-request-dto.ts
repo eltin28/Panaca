@@ -1,4 +1,4 @@
-import { TipoDevolucion } from "../../enums/TipoDevolucion";
+import { TipoDevolucion } from "../../models/enums/TipoDevolucion";
 
 export interface DevolucionRequestDTO {
   cuentaId: string;

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PublicoService } from '../../servicios/publico.service';
 import { AdministradorService } from '../../servicios/administrador.service';
-import { Evento } from '../../models/Evento';
+import { Evento } from '../../models/documents/Evento';
 import { Router } from '@angular/router';
 
 @Component({

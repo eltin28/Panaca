@@ -1,5 +1,5 @@
-import { EstadoCupon } from "../../enums/EstadoCupon";
-import { TipoCupon } from "../../enums/TipoCupon";
+import { EstadoCupon } from "../../models/enums/EstadoCupon";
+import { TipoCupon } from "../../models/enums/TipoCupon";
 
 export interface ItemsCuponDTO {
     nombre: string,

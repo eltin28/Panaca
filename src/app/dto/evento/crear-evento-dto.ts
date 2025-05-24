@@ -1,5 +1,5 @@
-import { EstadoEvento } from "../../enums/EstadoEvento";
-import { TipoEvento } from "../../enums/TipoEvento";
+import { EstadoEvento } from "../../models/enums/EstadoEvento";
+import { TipoEvento } from "../../models/enums/TipoEvento";
 
 export interface CrearEventoDTO {
     nombre: string,

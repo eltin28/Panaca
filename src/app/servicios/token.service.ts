@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Buffer } from "buffer";  
 import { InformacionCuentaDTO } from '../dto/cuenta/informacion-cuenta-dto';
 
 const TOKEN_KEY = "AuthToken";
@@ -50,7 +49,7 @@ export class TokenService {
 
   private decodePayload(token: string): any {
     const payload = token!.split(".")[1];
-    const payloadDecoded = Buffer.from(payload, 'base64').tostring('ascii');
+    const payloadDecoded = atob(payload); // alternativa más ligera en navegadores
     const values = JSON.parse(payloadDecoded);
     return values;
   }
@@ -77,10 +76,9 @@ export class TokenService {
         cedula: decodedValues.cedula,
         nombre: decodedValues.nombre,
         telefono: decodedValues.telefono,
-        direccion: decodedValues.direccion,
         email: decodedValues.email
       };
     }
-    return { id: '', cedula: '', nombre: '', telefono: '', direccion: '', email: '' };
+    return { id: '', cedula: '', nombre: '', telefono: '', email: '' };
   }
 }

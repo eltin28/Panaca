@@ -4,134 +4,100 @@ import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/autenticacion/mensaje-dto';
 import { CrearEventoDTO } from '../dto/evento/crear-evento-dto';
 import { EditarEventoDTO } from '../dto/evento/editar-evento-dto';
-import { ResponderPQRDTO } from '../dto/PQR/responder-pqrdto';
 import { CrearCuponDTO } from '../dto/cupon/crear-cupon-dto';
 import { EditarCuponDTO } from '../dto/cupon/editar-cupon-dto';
 import { ItemsCuponDTO } from '../dto/cupon/items-cupon-dto';
-import { Page } from '../models/Page';
-
+import { ResponderPQRDTO } from '../dto/PQR/responder-pqr-dto';
+import { InformacionPQRDTO } from '../dto/PQR/informacion-pqr-dto';
+import { ItemsCuponFiltroDTO } from '../dto/cupon/items-cupon-filtro-dto';
+import { InformacionCuponDTO } from '../dto/cupon/informacion-cupon-dto';
+import { DevolucionResponseDTO } from '../dto/devolucion/devolucion-response-dto'; 
+import { CambiarEstadoDevolucionDTO } from '../dto/devolucion/cambiar-estado-devolucion-dto';
+import { MostrarDonacionDTO } from '../dto/donation/mostrar-donacion-dto';
 
 @Injectable({
  providedIn: 'root'
 })
 export class AdministradorService {
 
-
  private adminURL = "http://localhost:8081/api/admin";
-
 
  constructor(private http: HttpClient) { }
 
-
-//  _______________________________ METODOS EVENTOS _________________________________________________
- 
-  public crearEvento(crearEventoDTO: CrearEventoDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.adminURL}/crear-evento`, crearEventoDTO);
-  }
-
-
- public actualizarEvento(id:string, editarEventoDTO: EditarEventoDTO): Observable<MensajeDTO> {
-   return this.http.put<MensajeDTO>(`${this.adminURL}/editar-evento/${id}`, editarEventoDTO);
- }
-
-
- public eliminarEvento(id: string): Observable<MensajeDTO> {
-   return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-evento/${id}`);
- }
-
-
-//  public listarEventosAdmin(): Observable<MensajeDTO> {
-//    return this.http.get<MensajeDTO>(`${this.adminURL}/evento/obtener-todos`);
-//  }
-// Este metodo está en el controlador publico, no sé si se toma esa url o qué
-
-public obtenerLocalidad(nombre: string): Observable<MensajeDTO> {
-  return this.http.get<MensajeDTO>(`${this.adminURL}/obtener-localidad/${nombre}`);
-}
-
-obtenerEventosDisponibles(page: number,size: number): Observable<Page<any>> {
-  const params = new HttpParams()
-    .set('page', page.tostring())
-    .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
-
-  return this.http.get<Page<any>>(`${this.adminURL}/evento-activos`, { params });
-}
-
-
-obtenerEventosInactivos(page: number,size: number): Observable<Page<any>> {
-  const params = new HttpParams()
-    .set('page', page.tostring())
-    .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
-
-  return this.http.get<Page<any>>(`${this.adminURL}/evento-inactivos`, { params });
-}
-
-
-//  _______________________________ METODOS PQR _________________________________________________
-
-public responderPQR(responderPQRDTO: ResponderPQRDTO): Observable<MensajeDTO> {
-  return this.http.put<MensajeDTO>(`${this.adminURL}/responder-pqr`, responderPQRDTO);
-}
-
-public obtenerInformacionPQR(id: string): Observable<MensajeDTO> {
-  return this.http.get<MensajeDTO>(`${this.adminURL}/obterner-informacion-pqr/${id}`);
-}
-
-public eliminarPQR(id: string): Observable<MensajeDTO> {
-  return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-pqr/${id}`);
-}
-
-//  _______________________________ METODOS CUPON _________________________________________________
-
-public crearCupon(crearCuponDTO: CrearCuponDTO): Observable<MensajeDTO> {
-  return this.http.post<MensajeDTO>(`${this.adminURL}/crear-cupon`, crearCuponDTO);
-}
-
-
-public editarCupon(editarCuponDTO: EditarCuponDTO, cuponId: string): Observable<MensajeDTO> {
-  return this.http.put<MensajeDTO>(`${this.adminURL}/editar-cupon/${cuponId}`, editarCuponDTO);
-}
-
-
-public obtenerInformacionCupon(id: string): Observable<MensajeDTO> {
-  return this.http.get<MensajeDTO>(`${this.adminURL}/cupon/${id}`);
-}
-
+  //  _______________________________ METODOS EVENTOS _________________________________________________
   
-  obtenerCuponesDisponibles(page: number,size: number): Observable<Page<any>> {
-    const params = new HttpParams()
-      .set('page', page.tostring())
-      .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
-
-    return this.http.get<Page<any>>(`${this.adminURL}/cupones-disponibles`, { params });
+  public crearEvento(evento: CrearEventoDTO): Observable<MensajeDTO<string>> {
+    return this.http.post<MensajeDTO<string>>(`${this.adminURL}/crear-evento`, evento);
   }
 
-  
-  obtenerCuponesNoDisponibles(page: number,size: number): Observable<Page<any>> {
-    const params = new HttpParams()
-      .set('page', page.tostring())
-      .set('size', '4');  // Asegúrate de que el tamaño de la página sea el que deseas
-
-    return this.http.get<Page<any>>(`${this.adminURL}/cupones-no-disponibles`, { params });
+  public editarEvento(id: string, evento: EditarEventoDTO): Observable<MensajeDTO<string>> {
+    return this.http.put<MensajeDTO<string>>(`${this.adminURL}/editar-evento/${id}`, evento);
   }
 
+  public eliminarEvento(id: string): Observable<MensajeDTO<string>> {
+    return this.http.delete<MensajeDTO<string>>(`${this.adminURL}/eliminar-evento/${id}`);
+  }
 
-public eliminarCupon(id: string): Observable<MensajeDTO> {
-  return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar-cupon/${id}`);
-}
+  //==================================== METODOS PQR =============================================//
 
-public obtenerCuponesFiltrados(itemCuponDTO: ItemsCuponDTO): Observable<MensajeDTO> {
-  return this.http.post<MensajeDTO>(`${this.adminURL}/filtrar-cupones`, itemCuponDTO);
-}
+  public responderPQR(dto: ResponderPQRDTO): Observable<MensajeDTO<string>> {
+    return this.http.put<MensajeDTO<string>>(`${this.adminURL}/responder-pqr`, dto);
+  }
 
-//  _______________________________ METODOS IMAGENES _________________________________________________
+  public obtenerInformacionPQR(id: string): Observable<MensajeDTO<InformacionPQRDTO>> {
+    return this.http.get<MensajeDTO<InformacionPQRDTO>>(`${this.adminURL}/obtener-informacion-pqr/${id}`);
+  }
 
- public subir(imagen: FormData): Observable<MensajeDTO> {
-   return this.http.post<MensajeDTO>(`${this.adminURL}/subir`, imagen);
- }
+  public eliminarPQR(id: string): Observable<MensajeDTO<string>> {
+    return this.http.delete<MensajeDTO<string>>(`${this.adminURL}/eliminar-pqr/${id}`);
+  }
 
- public eliminar(idImagen: string): Observable<MensajeDTO> {
-  return this.http.delete<MensajeDTO>(`${this.adminURL}/eliminar/${idImagen}`);
-}
+  //====================================== METODOS CUPON ====================================//
+
+  public crearCupon(cupon: CrearCuponDTO): Observable<MensajeDTO<string>> {
+    return this.http.post<MensajeDTO<string>>(`${this.adminURL}/crear-cupon`, cupon);
+  }
+
+  public editarCupon(cuponId: string, cupon: EditarCuponDTO): Observable<MensajeDTO<string>> {
+    return this.http.put<MensajeDTO<string>>(`${this.adminURL}/editar-cupon/${cuponId}`, cupon);
+  }
+
+  public eliminarCupon(id: string): Observable<MensajeDTO<string>> {
+    return this.http.delete<MensajeDTO<string>>(`${this.adminURL}/eliminar-cupon/${id}`);
+  }
+
+  public obtenerInformacionCupon(id: string): Observable<InformacionCuponDTO> {
+    return this.http.get<InformacionCuponDTO>(`${this.adminURL}/cupon/${id}`);
+  }
+
+  public filtrarCupones(filtro: ItemsCuponFiltroDTO): Observable<ItemsCuponDTO[]> {
+    return this.http.post<ItemsCuponDTO[]>(`${this.adminURL}/filtrar-cupones`, filtro);
+  }
+
+  //  _______________________________ METODOS IMAGENES _________________________________________________
+
+  public subir(imagen: FormData): Observable<MensajeDTO<string>> {
+    return this.http.post<MensajeDTO<string>>(`${this.adminURL}/subir`, imagen);
+  }
+
+  public eliminar(idImagen: string): Observable<MensajeDTO<string>> {
+    return this.http.delete<MensajeDTO<string>>(`${this.adminURL}/eliminar/${idImagen}`);
+  }
+
+  //==================================== METODOS DEVOLUCIONES =============================================/
+
+  public listarTodasDevoluciones(): Observable<MensajeDTO<DevolucionResponseDTO[]>> {
+    return this.http.get<MensajeDTO<DevolucionResponseDTO[]>>(`${this.adminURL}/devoluciones`);
+  }
+
+  public cambiarEstadoDevolucion(id: string, dto: CambiarEstadoDevolucionDTO): Observable<MensajeDTO<DevolucionResponseDTO>> {
+    return this.http.put<MensajeDTO<DevolucionResponseDTO>>(`${this.adminURL}/devoluciones/${id}/estado`, dto);
+  }
+
+  //==================================== METODOS DONACIONES =============================================//
+
+  public obtenerTodasLasDonaciones(): Observable<MensajeDTO<MostrarDonacionDTO[]>> {
+    return this.http.get<MensajeDTO<MostrarDonacionDTO[]>>(`${this.adminURL}/historial-donaciones`);
+  }
 
 }

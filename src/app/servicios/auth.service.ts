@@ -9,6 +9,7 @@ import { CrearCuentaDTO } from '../dto/cuenta/crear-cuenta-dto';
 import { ValidarCodigoDTO } from '../dto/cuenta/validar-codigo-dto';
 import { CambiarPasswordDTO } from '../dto/cuenta/cambiar-password-dto';
 import { CodigoContraseniaDTO } from '../dto/cuenta/codigo-contrasenia-dto';
+import { TokenDTO } from '../dto/autenticacion/token-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -43,27 +44,25 @@ export class AuthService {
  
   //_______________________________ METODOS CUENTA _____________________________________________
 
-   public crearCuenta(cuentaDTO: CrearCuentaDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/crear-cuenta`, cuentaDTO);
-   }
+  public crearCuenta(cuentaDTO: CrearCuentaDTO): Observable<MensajeDTO<string>> {
+    return this.http.post<MensajeDTO<string>>(`${this.authURL}/crear-cuenta`, cuentaDTO);
+  }
 
-   public validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/validar-codigo-registro`, validarCodigoDTO);
-   }
+  public validarCodigo(validarCodigoDTO: ValidarCodigoDTO): Observable<MensajeDTO<string>> {
+    return this.http.post<MensajeDTO<string>>(`${this.authURL}/validar-codigo-registro`, validarCodigoDTO);
+  }
 
-   public enviarCodigoRecuperacion(codigoContraseniaDTO: CodigoContraseniaDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/enviar-codigo-recuperacion-contasenia`, codigoContraseniaDTO);
-   }
+  public enviarCodigoRecuperacion(codigoContraseniaDTO: CodigoContraseniaDTO): Observable<MensajeDTO<string>> {
+    return this.http.post<MensajeDTO<string>>(`${this.authURL}/enviar-codigo-recuperacion-contasenia`, codigoContraseniaDTO);
+  }
 
-   public cambiarPassword(cambiarPasswordDTO: CambiarPasswordDTO): Observable<MensajeDTO> {
-    return this.http.put<MensajeDTO>(`${this.authURL}/cambiar-password`, cambiarPasswordDTO);
-   }
+  public cambiarPassword(cambiarPasswordDTO: CambiarPasswordDTO): Observable<MensajeDTO<string>> {
+    return this.http.put<MensajeDTO<string>>(`${this.authURL}/cambiar-password`, cambiarPasswordDTO);
+  }
    
-     //_______________________________ METODOS AUTENTICACION _____________________________________________________
-
-   public iniciarSesion(loginDTO: LoginDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/iniciar-sesion`, loginDTO);
-   }
+  public iniciarSesion(loginDTO: LoginDTO): Observable<MensajeDTO<TokenDTO>> {
+    return this.http.post<MensajeDTO<TokenDTO>>(`${this.authURL}/iniciar-sesion`, loginDTO);
+  }
    
 }
 

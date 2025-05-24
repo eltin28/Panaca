@@ -1,4 +1,4 @@
-import { AnimalType } from "../../enums/AnimalType";
+import { AnimalType } from "../../models/enums/AnimalType";
 
 export interface DonationItemDTO {
   tipoAnimal: AnimalType;
